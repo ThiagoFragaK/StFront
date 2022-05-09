@@ -1,10 +1,10 @@
 <template>
-    <h1>Main!</h1>
+    <h1>My Games!</h1>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'MyGamesPage',
   layout: 'default'
 }
 </script>
