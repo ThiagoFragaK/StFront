@@ -7,6 +7,7 @@
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                     <b-navbar-nav>
+                        <b-nav-item to="/auth/login">Login</b-nav-item>
                         <b-nav-item to="/games">Games</b-nav-item>
                     </b-navbar-nav>
                     <b-nav-item-dropdown right>
