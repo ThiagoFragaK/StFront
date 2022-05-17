@@ -119,7 +119,6 @@
 
 <script>
 export default {
-  name: 'IndexPage',
-  layout: 'default'
+  name: 'IndexPage'
 }
 </script>
