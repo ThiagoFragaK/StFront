@@ -95,7 +95,6 @@
 
 <script>
 export default {
-  name: 'MyGamesPage',
-  layout: 'default'
+  name: 'MyGamesPage'
 }
 </script>

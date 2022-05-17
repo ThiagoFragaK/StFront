@@ -81,7 +81,6 @@
 
 <script>
 export default {
-  name: 'UserPage',
-  layout: 'default'
+  name: 'UserPage'
 }
 </script>
