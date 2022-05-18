@@ -1,0 +1,12 @@
+import Vuex from 'vuex';
+
+const createStore = () => {
+    return new Vuex.Store({
+        state: {},
+        mutators: {},
+        actions: {},
+        getters: {}
+    });
+}
+
+export default createStore
