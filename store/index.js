@@ -8,3 +8,5 @@ const createStore = () => {
         getters: {}
     });
 }
+
+export default createStore
