@@ -42,7 +42,7 @@ let tableColumns = [
 	{ key: "name", label: "Name", class: "text-center" },
 	{ key: "playtime_2weeks", label: "Played in last 2 weeks", class: "text-center" },
 	{ key: "playtime_forever", label: "Total Playtime", class: "text-center" },
-  { key: "appid", label: "Games Id", class: "text-center col-1" }
+  { key: "appid", label: "", class: "text-center col-1" }
 ];
 
 export default {
@@ -76,5 +76,3 @@ export default {
   }
 }
 </script>
-
-// http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg.
