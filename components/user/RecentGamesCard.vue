@@ -1,76 +1,57 @@
 <template>
   <b-container>
-    <b-row align-v="center" class="justify-content-md-center mt-3">
-      <b-col lg="4" md="3">
-        <b-card
-          title="Card Title"
-          img-src="https://picsum.photos/600/300/?image=25"
-          img-alt="Image"
-          img-top
-          tag="article"
-          style="max-width: 20rem;"
-          class="mx-auto"
-        >
-          <b-card-text>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </b-card-text>
-
-          <b-button href="#" variant="primary">Go somewhere</b-button>
-        </b-card> 
-      </b-col>
-      <b-col lg="4" md="3">
-        <div>
-          <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mx-auto"
-          >
-            <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </b-card-text>
-
-            <b-button href="#" variant="primary">Go somewhere</b-button>
-          </b-card>
-        </div>    
-      </b-col>
-      <b-col lg="4" md="3">
-        <div>
-          <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mx-auto"
-          >
-            <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </b-card-text>
-
-            <b-button href="#" variant="primary">Go somewhere</b-button>
-          </b-card>
-        </div>    
-      </b-col>
+    <b-row v-if="loaded" align-v="center" class="justify-content-md-center mt-3">
+      <div>
+        <b-table striped hover :fields="tableColumns" :items="tableItens">
+          <template #cell(img_icon_url)="data">
+               <b-avatar 
+                variant="dark" 
+                :src= "getImage(data.item)">
+              </b-avatar>
+          </template>
+          <template #cell(name)="data">
+              {{data.item.name}}
+          </template>
+          <template #cell(playtime_2weeks)="data">
+              {{data.item.playtime_2weeks}}
+          </template>
+          <template #cell(playtime_forever)="data">
+              {{data.item.playtime_forever}}
+          </template>
+          <template #cell(appid)="data">
+             <b-button 
+              @click="redirect(data.item.appid)"
+              size="sm"
+              variant="outline-primary">
+              Achievements
+            </b-button>
+					</template>
+        </b-table>
+      </div>
+    </b-row>
+    <b-row v-else-if="!loaded" align-v="center" class="justify-content-md-center mt-3">
+      <b-spinner variant="primary"></b-spinner>
     </b-row>
   </b-container>
 </template>
 
 <script>
+
+let tableColumns = [
+	{ key: "img_icon_url", label: "", class: "text-center col-1" },
+	{ key: "name", label: "Name", class: "text-center" },
+	{ key: "playtime_2weeks", label: "Played in last 2 weeks", class: "text-center" },
+	{ key: "playtime_forever", label: "Total Playtime", class: "text-center" },
+  { key: "appid", label: "Games Id", class: "text-center col-1" }
+];
+
 export default {
   name: 'UserPage',
   data(){
     return {
-      userInfo: {
-        avatarfull: null,
-        personaname: null,
-        realname: null,
-        profileurl: null
-      } 
+      loaded: false,
+      tableItens: {},
+      tableColumns
     };
   },
   created() {
@@ -78,13 +59,22 @@ export default {
   },
   methods: {
     getData(){
-      this.$axios.$get('v1/user')
+      this.$axios.$get('v1/games/recentGames')
         .then((response) => {
-          this.userInfo = response;
-          console.log(this.userInfo)
+          this.tableItens = response.games;
+          this.loaded = true;
+          console.log(this.tableItens)
         }
       )
+    },
+    getImage(data){
+      return `http://media.steampowered.com/steamcommunity/public/images/apps/${data.appid}/${data.img_icon_url}.jpg`;
+    },
+    redirect(appId){
+      return;
     }
   }
 }
 </script>
+
+// http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg.
