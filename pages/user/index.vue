@@ -5,14 +5,13 @@
         <b-card no-body class="overflow-hidden" style="max-height: 250px;">
           <b-row no-gutters>
             <b-col md="6">
-              <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+              <b-card-img :src="userInfo.avatarfull" alt="Image" class="rounded-0"></b-card-img>
             </b-col>
             <b-col md="6">
-              <b-card-body title="Horizontal Card">
-                <b-card-text>
-                  This is a wider card with supporting text as a natural lead-in to additional content.
-                  This content is a little bit longer.
-                </b-card-text>
+              <b-card-body :title="userInfo.personaname">
+                <b-card-text>{{ userInfo.realname }}</b-card-text>
+                <br/>
+                <b-button :href="userInfo.profileurl" variant="outline-primary">Steam Profile</b-button>
               </b-card-body>
             </b-col>
           </b-row>
@@ -84,7 +83,12 @@ export default {
   name: 'UserPage',
   data(){
     return {
-      userInfo: undefined
+      userInfo: {
+        avatarfull: null,
+        personaname: null,
+        realname: null,
+        profileurl: null
+      } 
     };
   },
   created() {
@@ -92,9 +96,10 @@ export default {
   },
   methods: {
     getData(){
-      this.$axios.$get('/api/v1/user')
+      this.$axios.$get('v1/user')
 				.then((response) => {
-          console.log(response);
+          this.userInfo = response;
+          console.log(this.userInfo)
 				}
       )
     }
