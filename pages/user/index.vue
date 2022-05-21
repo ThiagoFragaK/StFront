@@ -81,6 +81,23 @@
 
 <script>
 export default {
-  name: 'UserPage'
+  name: 'UserPage',
+  data(){
+    return {
+      userInfo: undefined
+    };
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    getData(){
+      this.$axios.$get('/api/v1/user')
+				.then((response) => {
+          console.log(response);
+				}
+      )
+    }
+  }
 }
 </script>
