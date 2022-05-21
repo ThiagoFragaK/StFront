@@ -3,32 +3,22 @@
     <b-row v-if="loaded" align-v="center" class="justify-content-md-center mt-3">
       <b-row align-v="center" class="justify-content-md-center mt-3">
         <b-col lg="6">
-          <b-card title="Card title" sub-title="Card subtitle">
+          <b-card :title="gamesCount.played" sub-title="Total Games">
             <b-card-text>
-              Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-              content.
             </b-card-text>
-
-            <b-card-text>A second paragraph of text in the card.</b-card-text>
-
-            <a href="#" class="card-link">Card link</a>
-            <b-link href="#" class="card-link">Another link</b-link>
           </b-card>
         </b-col>
         <b-col lg="6">
-          <b-card title="Card title" sub-title="Card subtitle">
+          <b-card :title="gamesCount.notPlayed" sub-title="Games not yet played">
             <b-card-text>
-              Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-              content.
             </b-card-text>
-
-            <b-card-text>A second paragraph of text in the card.</b-card-text>
-
-            <a href="#" class="card-link">Card link</a>
-            <b-link href="#" class="card-link">Another link</b-link>
           </b-card>
         </b-col>
-        <br/>
+
+        <b-col lg="12">
+          <br/>
+        </b-col>
+        
         <b-col lg="12" >
           <div>
             <b-table striped hover :fields="tableColumns" :items="tableItens">
@@ -70,6 +60,10 @@ export default {
   data(){
     return {
       loaded: false,
+      gamesCount: {
+        played: null,
+        notPlayed: null,
+      },
       tableItens: {},
       tableColumns
     };
@@ -82,6 +76,8 @@ export default {
       this.$axios.$get('v1/games')
         .then((response) => {
           this.tableItens = response.data;
+          this.gamesCount.notPlayed = response.notPlayedCount;
+          this.gamesCount.played = response.playedCount;
           this.loaded = true;
           console.log(this.tableItens)
         }
