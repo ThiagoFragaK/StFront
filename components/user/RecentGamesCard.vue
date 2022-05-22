@@ -13,10 +13,10 @@
               {{data.item.name}}
           </template>
           <template #cell(playTimeWeeks)="data">
-              {{data.item.playTimeWeeks}}
+              {{data.item.playTimeWeeks}} hrs
           </template>
           <template #cell(playTimeTotal)="data">
-              {{data.item.playTimeTotal}}
+              {{data.item.playTimeTotal}} hrs
           </template>
           <template #cell(appid)="data">
              <b-button 
