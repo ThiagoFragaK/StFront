@@ -22,11 +22,17 @@
         <b-col lg="12" >
           <div>
             <b-table striped hover :fields="tableColumns" :items="tableItens">
+              <template #cell(image)="data">
+                <b-avatar 
+                  variant="dark" 
+                  :src= "getImage(data.item)">
+                  </b-avatar>
+              </template>
               <template #cell(gameName)="data">
                   {{data.item.gameName}}
               </template>
               <template #cell(playTime)="data">
-                  {{data.item.playTime}}hrs
+                  {{data.item.playTime}} hrs
               </template>
               <template #cell(gameId)="data">
                 <b-button 
@@ -50,6 +56,7 @@
 <script>
 
 let tableColumns = [
+	{ key: "image", label: "", class: "text-center" },
 	{ key: "gameName", label: "Name", class: "text-center" },
 	{ key: "playTime", label: "Name", class: "text-center" },
   { key: "gameId", label: "", class: "text-center col-1" }
@@ -82,6 +89,9 @@ export default {
           console.log(this.tableItens)
         }
       )
+    },
+    getImage(data){
+      return `http://media.steampowered.com/steamcommunity/public/images/apps/${data.gameId}/${data.image}.jpg`;
     },
     redirect(appId){
       return;
