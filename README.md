@@ -1,4 +1,4 @@
-# SteamFront
+<h1> <img align="center" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D"> SteamFront</h1>
 
 ## Build Setup
 
