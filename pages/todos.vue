@@ -3,10 +3,8 @@
     <br/>
     <h2>To-do List</h2>
     <hr>
-    <div>
-      <b-dropdown split text="Choose a Game" variant="primary" class="m-md-2">
-        <b-dropdown-item>First Action</b-dropdown-item>
-      </b-dropdown>
+    <div col="4">
+      <game-selector />
     </div>
     <br/>
     <todo-table />
@@ -14,13 +12,15 @@
 </template>
 
 <script>
+import GameSelector from '../components/todo/GameSelector.vue'
 import TodoTable from '../components/todo/TodoTable.vue'
 
 export default {
-  components: { TodoTable },
+  components: { TodoTable, GameSelector },
     name: 'Games',
     data() {
         return {
+          
         }
     }
 }
