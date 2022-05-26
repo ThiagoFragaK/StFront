@@ -2,16 +2,19 @@
   <b-container>
     <b-row align-v="center" class="justify-content-md-center mt-3">
       <b-row align-v="center" class="justify-content-md-center mt-3">
-        <b-col lg="6">
-            <game-info />
+        
+        <b-col lg="12">
+          <game-info />
         </b-col>
 
         <b-col lg="12">
           <br/>
         </b-col>
+
         <b-col lg="12" >
-            <achievements />
+          <achievements />
         </b-col>
+
       </b-row>
     </b-row>
   </b-container>
