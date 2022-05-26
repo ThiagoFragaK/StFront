@@ -1,8 +1,14 @@
 <template>
   <b-container>
-    <div col="4">
-      <b-form-select v-model="selected" :options="gameList"></b-form-select>
-    </div>
+    <b-row class="justify-content-md-left mt-3">
+      <b-col lg="2" md="3">
+        <b-form-select  
+          @change='gameChange($event)'
+          v-model="selected" 
+          :options="gameList">
+        </b-form-select>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -20,5 +26,11 @@ export default {
       ],
     };
   },
+  methods: {
+    gameChange(selected)
+    {
+      this.$emit('changedGame', selected);
+    }
+  }
 };
 </script>

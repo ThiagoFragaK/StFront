@@ -9,6 +9,12 @@
 <script>
 export default {
   name: "TodoTable",
+  props: {
+    gameId: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       items: [
