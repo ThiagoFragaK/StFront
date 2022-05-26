@@ -9,7 +9,6 @@
         <b-col lg="12">
           <br/>
         </b-col>
-        
         <b-col lg="12" >
             <achievements />
         </b-col>
@@ -34,6 +33,7 @@ export default {
     name: "MyGamesPage",
     data(){
         return {
+          gameId: this.$route.params.gameId
         };
     },
     created() {
