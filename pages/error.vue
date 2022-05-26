@@ -10,6 +10,8 @@
         <h1>Error Page.</h1>
         Some quick example text to build on the card and make up the bulk of the card's content.
       </b-card-text>
+      <br/>
+      <b-button variant="primary" to="/">Back</b-button>
     </b-card>
   </b-container>
 </template>

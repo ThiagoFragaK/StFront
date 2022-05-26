@@ -17,6 +17,10 @@ export default {
     ]
   },
 
+  server: {
+    port: 4500,
+  },
+
   css: [
     '~/assets/css/theme.css'
   ],
@@ -25,7 +29,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'http://localhost:8000/api/',
+    baseURL: 'http://localhost:9000/api/',
   },
 
   components: true,
