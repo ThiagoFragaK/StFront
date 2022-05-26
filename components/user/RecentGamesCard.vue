@@ -22,7 +22,9 @@
              <b-button 
               @click="redirect(data.item.appid)"
               size="sm"
-              variant="outline-primary">
+              variant="outline-primary"
+              :to="`/game/${data.item.appid}`"
+              >
               Achievements
             </b-button>
 					</template>
