@@ -36,10 +36,10 @@
               </template>
               <template #cell(gameId)="data">
                 <b-button 
-                  @click="redirect(data.item.appid)"
+                  @click="redirect(data.item.gameId)"
                   size="sm"
                   variant="outline-primary"
-                  :to="`/game/${data.item.appid}`"
+                  :to="`/game/${data.item.gameId}`"
                   >
                   Achievements
                 </b-button>
@@ -95,8 +95,8 @@ export default {
     getImage(data){
       return `http://media.steampowered.com/steamcommunity/public/images/apps/${data.gameId}/${data.image}.jpg`;
     },
-    redirect(appId){
-      return;
+    isDisabled(id){
+      return ;
     }
   }
 };
