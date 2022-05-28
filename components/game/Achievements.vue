@@ -1,8 +1,13 @@
 <template>
   <b-container>
-    <div>
-        <b-table striped hover :items="items"></b-table>
-    </div>
+    <b-row v-if="loaded" align-v="center" class="justify-content-md-center mt-3">
+      <div>
+          <b-table striped hover :items="items"></b-table>
+      </div> 
+    </b-row>
+    <b-row v-else-if="!loaded" align-v="center" class="justify-content-md-center mt-3">
+      <b-spinner variant="primary"></b-spinner>
+    </b-row>
   </b-container>
 </template>
 
@@ -10,8 +15,15 @@
 
 export default {
   name: "Achievements Page",
+  props:{
+    id: {
+      type: String,
+    },
+  },
   data() {
     return {
+      loaded: false,
+      achievementInfo: [],
       items: [
           { age: 40, first_name: 'Dickerson', last_name: 'MacCann' },
           { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
@@ -21,8 +33,18 @@ export default {
     }
   },
   created() {
+    this.getData();
   },
   methods: {
+    getData() {
+      var gameId = this.id;
+      this.$axios.$get(`v2/achievements/user/${gameId}`)
+        .then((response) => {
+          this.achievementInfo = response;
+          this.loaded = true;
+          console.log(response)
+      });
+    },
   },
 };
 </script>
