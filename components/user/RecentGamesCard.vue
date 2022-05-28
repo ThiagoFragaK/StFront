@@ -63,7 +63,7 @@ export default {
     getData(){
       this.$axios.$get('v1/games/recentGames')
         .then((response) => {
-          this.tableItens = response.games;
+          this.tableItens = response;
           this.loaded = true;
           console.log(this.tableItens)
         }
