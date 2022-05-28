@@ -4,7 +4,7 @@
       <b-row align-v="center" class="justify-content-md-center mt-3">
         
         <b-col lg="12">
-          <game-info />
+          <game-info :id= "gameId"/>
         </b-col>
 
         <b-col lg="12">
@@ -12,7 +12,7 @@
         </b-col>
 
         <b-col lg="12" >
-          <achievements />
+          <achievements :id= "gameId"/>
         </b-col>
 
       </b-row>
