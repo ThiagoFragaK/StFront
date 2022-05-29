@@ -24,6 +24,7 @@
                         </template>
                         <b-dropdown-item to="/user">Profile</b-dropdown-item>
                         <b-dropdown-item to="/user/myGames">My Games</b-dropdown-item>
+                        <b-dropdown-item to="/user/myFriends">Friends List</b-dropdown-item>
                         <b-dropdown-item >Sign Out</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
