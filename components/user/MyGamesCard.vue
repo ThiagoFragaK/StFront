@@ -36,9 +36,10 @@
               </template>
               <template #cell(gameId)="data">
                 <b-button 
-                  @click="redirect(data.item.appid)"
                   size="sm"
-                  variant="outline-primary">
+                  variant="outline-primary"
+                  :to="`/game/${data.item.gameId}`"
+                  >
                   Achievements
                 </b-button>
               </template>
@@ -58,7 +59,7 @@
 let tableColumns = [
 	{ key: "image", label: "", class: "text-center" },
 	{ key: "gameName", label: "Name", class: "text-center" },
-	{ key: "playTime", label: "Name", class: "text-center" },
+	{ key: "playTime", label: "Play Time", class: "text-center" },
   { key: "gameId", label: "", class: "text-center col-1" }
 ];
 
@@ -86,15 +87,14 @@ export default {
           this.gamesCount.notPlayed = response.notPlayedCount;
           this.gamesCount.played = response.playedCount;
           this.loaded = true;
-          console.log(this.tableItens)
         }
       )
     },
     getImage(data){
       return `http://media.steampowered.com/steamcommunity/public/images/apps/${data.gameId}/${data.image}.jpg`;
     },
-    redirect(appId){
-      return;
+    isDisabled(id){
+      return ;
     }
   }
 };

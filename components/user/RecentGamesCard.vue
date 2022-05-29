@@ -22,7 +22,9 @@
              <b-button 
               @click="redirect(data.item.appid)"
               size="sm"
-              variant="outline-primary">
+              variant="outline-primary"
+              :to="`/game/${data.item.appid}`"
+              >
               Achievements
             </b-button>
 					</template>
@@ -61,9 +63,8 @@ export default {
     getData(){
       this.$axios.$get('v1/games/recentGames')
         .then((response) => {
-          this.tableItens = response.games;
+          this.tableItens = response;
           this.loaded = true;
-          console.log(this.tableItens)
         }
       )
     },
