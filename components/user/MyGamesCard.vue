@@ -3,14 +3,16 @@
     <b-row v-if="loaded" align-v="center" class="justify-content-md-center mt-3">
       <b-row align-v="center" class="justify-content-md-center mt-3">
         <b-col lg="6">
-          <b-card :title="gamesCount.played" sub-title="Total Games">
+          <b-card>
             <b-card-text>
+              <h5>Total Games: {{ gamesCount.played }} </h5>
             </b-card-text>
           </b-card>
         </b-col>
         <b-col lg="6">
-          <b-card :title="gamesCount.notPlayed" sub-title="Games not yet played">
+          <b-card>
             <b-card-text>
+              <h5>Games not played: {{ gamesCount.notPlayed }} </h5>
             </b-card-text>
           </b-card>
         </b-col>
