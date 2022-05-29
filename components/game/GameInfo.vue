@@ -1,33 +1,39 @@
 <template>
   <b-container>
     <b-row v-if="loaded" align-v="center" class="justify-content-md-center mt-3">
-      <b-card >
+      <div>
+      <b-card >        
         <template #header>
           <b-row align-v="center" class="justify-content-md-center mt-3">
-            <b-col lg="2">
-              <b-avatar rounded size="6rem" src="https://placekitten.com/300/300"></b-avatar>
+            <b-col lg="4">
+              <div>
+                <b-img :src="gameInfo.general.image" fluid alt="Fluid image"></b-img>
+              </div>
             </b-col>
-            <b-col lg="10">
-              <h3 >Name</h3>
+            <b-col lg="8">
+              <h3>{{ gameInfo.general.name }}</h3>
             </b-col>
           </b-row>
         </template>
         <b-card-text>
           <b-row>
-            <b-col>Info#01: 1 of 3</b-col>
-            <b-col>Info#02: 2 of 3</b-col>
-            <b-col>Info#03: 3 of 3</b-col>
-            <b-col>Info#04: 4 of 3</b-col>
+            <h5>Global Achievements Statistics</h5>
+            <b-col>Above 70%: {{ gameInfo.globalInfo.quantity.aboveSevety }} ( {{ gameInfo.globalInfo.percentages.aboveSevety }} % )</b-col>
+            <b-col>Above 51%: {{ gameInfo.globalInfo.quantity.aboveFiftyOne }} ( {{ gameInfo.globalInfo.percentages.aboveFiftyOne }} % )</b-col>
+            <b-col>Below 10%: {{ gameInfo.globalInfo.quantity.belowTen }} ( {{ gameInfo.globalInfo.percentages.belowTen }} % )</b-col>
+            <b-col>Below 2%: {{ gameInfo.globalInfo.quantity.belowTwo }} ( {{ gameInfo.globalInfo.percentages.belowTwo }} % )</b-col>
           </b-row>
-          <br/>
+          <hr/>
           <b-row>
-            <b-col>Info#01: 1 of 3</b-col>
-            <b-col>Info#02: 2 of 3</b-col>
-            <b-col>Info#03: 3 of 3</b-col>
-            <b-col>Info#04: 4 of 3</b-col>
+            <h5>User Achievements Statistics</h5>
+            <b-col>Total of Achievements: {{ gameInfo.userAchievements.total }} </b-col>
+            <b-col>Unlocked Achievements: {{ gameInfo.userAchievements.unlocked }} </b-col>
+            <b-col>Locked of Achievements: {{ gameInfo.userAchievements.locked }} </b-col>
+            <b-col><h6>Percentage: {{ gameInfo.userAchievements.percentage }} %</h6></b-col>
           </b-row>
         </b-card-text>
       </b-card>
+      </div>
     </b-row>
     <b-row v-else-if="!loaded" align-v="center" class="justify-content-md-center mt-3">
       <b-spinner variant="primary"></b-spinner>
@@ -45,7 +51,8 @@ export default {
   data() {
     return {
       loaded: false,
-      gameInfo: []
+      gameInfo: [
+      ]
     };
   },
   created() {
@@ -54,7 +61,7 @@ export default {
   methods: {
     getData() {
       var gameId = this.id;
-      this.$axios.$get(`v2/achievements/user/${gameId}`)
+      this.$axios.$get(`v2/games/info/${gameId}`)
         .then((response) => {
           this.gameInfo = response;
           this.loaded = true;
