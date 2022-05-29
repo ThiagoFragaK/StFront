@@ -76,7 +76,6 @@ export default {
       this.$axios.$get(`v2/achievements/user/${gameId}`).then((response) => {
         this.tableItens = response;
         this.loaded = true;
-        console.log(response);
       });
     },
     getImage(item) {
