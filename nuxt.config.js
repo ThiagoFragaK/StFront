@@ -26,6 +26,7 @@ export default {
   ],
 
   plugins: [
+    { src: '~/plugins/apexcharts.js', ssr: false }
   ],
 
   axios: {
@@ -43,5 +44,8 @@ export default {
   ],
 
   build: {
+    vendor : [
+      'vue-apexchart'
+   ]
   }
 }
