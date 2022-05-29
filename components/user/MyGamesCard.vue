@@ -36,7 +36,6 @@
               </template>
               <template #cell(gameId)="data">
                 <b-button 
-                  @click="redirect(data.item.gameId)"
                   size="sm"
                   variant="outline-primary"
                   :to="`/game/${data.item.gameId}`"
