@@ -65,7 +65,6 @@ export default {
         .then((response) => {
           this.tableItens = response;
           this.loaded = true;
-          console.log(this.tableItens)
         }
       )
     },

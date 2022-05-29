@@ -59,7 +59,7 @@
 let tableColumns = [
 	{ key: "image", label: "", class: "text-center" },
 	{ key: "gameName", label: "Name", class: "text-center" },
-	{ key: "playTime", label: "Name", class: "text-center" },
+	{ key: "playTime", label: "Play Time", class: "text-center" },
   { key: "gameId", label: "", class: "text-center col-1" }
 ];
 
@@ -87,7 +87,6 @@ export default {
           this.gamesCount.notPlayed = response.notPlayedCount;
           this.gamesCount.played = response.playedCount;
           this.loaded = true;
-          console.log(this.tableItens)
         }
       )
     },

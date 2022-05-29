@@ -65,7 +65,6 @@ export default {
         .then((response) => {
           this.gameInfo = response;
           this.loaded = true;
-          console.log(response)
       });
     },
   },

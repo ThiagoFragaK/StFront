@@ -69,7 +69,6 @@ export default {
     getData() {
       this.$axios.$get("v1/user").then((response) => {
         this.userInfo = response;
-        console.log(response)
         this.loaded = true;
       });
     },
