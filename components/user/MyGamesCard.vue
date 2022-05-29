@@ -91,7 +91,6 @@ export default {
           this.tableItens = response.data;
           this.gamesCount.notPlayed = response.notPlayedCount;
           this.gamesCount.played = response.playedCount;
-          console.log(response);
           this.loaded = true;
         }
       )

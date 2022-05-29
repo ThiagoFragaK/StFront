@@ -47,7 +47,7 @@ let tableColumns = [
   { key: "image", label: "", class: "text-center" },
   { key: "name", label: "Name", class: "text-center" },
   { key: "description", label: "Description", class: "text-center" },
-  { key: "globalStat", label: "Global Unlock Rate", class: "text-center" },
+  { key: "globalStat", label: "Global Unlock Rate", class: "text-center col-2" },
   { key: "isHidden", label: "Hidden", class: "text-center" },
   { key: "achieved", label: "Achieved", class: "text-center" },
   { key: "unlocked", label: "Unlock Date", class: "text-center" },

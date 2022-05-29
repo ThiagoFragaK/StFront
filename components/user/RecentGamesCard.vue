@@ -18,11 +18,14 @@
           <template #cell(playTimeTotal)="data">
               {{data.item.playTimeTotal}} hrs
           </template>
+          <template #cell(achievements)="data">
+              {{ getAchievements(data.item) }}
+          </template>
           <template #cell(appid)="data">
              <b-button 
-              @click="redirect(data.item.appid)"
               size="sm"
               variant="outline-primary"
+              :disabled="isDisabled(data.item)"
               :to="`/game/${data.item.appid}`"
               >
               Achievements
@@ -44,6 +47,7 @@ let tableColumns = [
 	{ key: "name", label: "Name", class: "text-center" },
 	{ key: "playTimeWeeks", label: "Played in last 2 weeks", class: "text-center" },
 	{ key: "playTimeTotal", label: "Total Playtime", class: "text-center" },
+  { key: "achievements", label: "Achievements", class: "text-center col-2" },
   { key: "appid", label: "", class: "text-center col-1" }
 ];
 
@@ -71,8 +75,15 @@ export default {
     getImage(data){
       return `http://media.steampowered.com/steamcommunity/public/images/apps/${data.appid}/${data.image}.jpg`;
     },
-    redirect(appId){
-      return;
+    isDisabled(item){
+      return item.achievements ? false : true;
+    },
+    getAchievements(item){
+      var achievements = item.achievements;
+      if(!achievements){
+        return '-';
+      }
+      return achievements.unlocked+' of '+achievements.total+' ('+achievements.percentage+'%)';
     }
   }
 }
