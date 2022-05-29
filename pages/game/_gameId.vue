@@ -24,13 +24,6 @@
 import Achievements from '../../components/game/Achievements.vue';
 import GameInfo from '../../components/game/GameInfo.vue';
 
-let tableColumns = [
-	{ key: "image", label: "", class: "text-center" },
-	{ key: "gameName", label: "Name", class: "text-center" },
-	{ key: "playTime", label: "Name", class: "text-center" },
-  { key: "gameId", label: "", class: "text-center col-1" }
-];
-
 export default {
     components: { Achievements, GameInfo },
     name: "MyGamesPage",
