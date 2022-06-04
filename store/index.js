@@ -1,11 +1,12 @@
 import Vuex from 'vuex';
 
+import login from "./login";
+
 const createStore = () => {
     return new Vuex.Store({
-        state: {},
-        mutators: {},
-        actions: {},
-        getters: {}
+        modules: {
+            login
+        }
     });
 }
 
