@@ -14,7 +14,7 @@
                   width="250"
                   height="20"
                   alt="Rounded image"
-                  center="true" 
+                  center="true"
                 >
                 </b-img>
               </div>
@@ -22,6 +22,7 @@
 
               <b-form-group label="User">
                 <b-form-input
+                  v-model="form.user"
                   placeholder="enter username"
                   required
                 ></b-form-input>
@@ -29,6 +30,7 @@
 
               <b-form-group label="Password">
                 <b-form-input
+                  v-model="form.password"
                   type="password"
                   placeholder="enter password"
                   required
@@ -39,12 +41,9 @@
                 <b-form-checkbox>Remember me</b-form-checkbox>
               </b-form-group>
               <b-row align-v="center" class="justify-content-md-center mt-3">
-                <b-col lg="6" md="3">
-                  <b-button variant="secondary">Forgot Password</b-button>
-                </b-col>
-                <b-col lg="4" md="3">
-                  <b-button variant="primary">Login</b-button>
-                </b-col>
+                <b-row lg="6">
+                  <b-button @click="login()" variant="primary">Login</b-button>
+                </b-row>
               </b-row>
             </b-form>
           </b-card>
@@ -61,12 +60,15 @@ export default {
   layout: "login",
   data() {
     return {
-      form: {},
+      form: {
+        user: "",
+        password: "",
+      },
     };
   },
   methods: {
-    onSubmit(event) {
-      //   Add Code Here
+    login() {
+      console.log(this.form);
     },
   },
 };
