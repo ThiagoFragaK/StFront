@@ -14,7 +14,6 @@
                   width="250"
                   height="20"
                   alt="Rounded image"
-                  center="true"
                 >
                 </b-img>
               </div>
@@ -22,7 +21,7 @@
 
               <b-form-group label="User">
                 <b-form-input
-                  v-model="form.user"
+                  v-model="form.name"
                   placeholder="enter username"
                   required
                 ></b-form-input>
@@ -40,7 +39,7 @@
               <b-form-group id="input-group-4">
                 <b-form-checkbox>Remember me</b-form-checkbox>
               </b-form-group>
-              <b-row align-v="center" class="justify-content-md-center mt-3">
+              <b-row class="justify-content-md-center mt-3">
                 <b-row lg="6">
                   <b-button @click="login()" variant="primary">Login</b-button>
                 </b-row>
@@ -61,7 +60,7 @@ export default {
   data() {
     return {
       form: {
-        user: "",
+        name: "",
         password: "",
       },
     };
@@ -69,6 +68,15 @@ export default {
   methods: {
     login() {
       console.log(this.form);
+      this.$axios.$post("login", this.form)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          // this.$store.commit('login/isLoggedIn');
+          console.log(err.response.data);
+          // console.log(this.$store.state.login);
+        });
     },
   },
 };
