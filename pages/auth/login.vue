@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import Toast from "vue-toastification";
+
 export default {
   name: "LoginPage",
   layout: "login",
@@ -67,17 +69,27 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.form);
       this.$axios.$post("login", this.form)
         .then((response) => {
           console.log(response);
         })
         .catch((err) => {
-          // this.$store.commit('login/isLoggedIn');
-          console.log(err.response.data);
-          // console.log(this.$store.state.login);
+          this.$toast.error("Invalid Credentials", {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            rtl: false
+          });
         });
     },
   },
 };
 </script>
+// this.$store.commit('login/isLoggedIn');
+// console.log(this.$store.state.login);

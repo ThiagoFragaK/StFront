@@ -40,7 +40,11 @@ export default {
 
   modules: [
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    ["vue-toastification/nuxt", {
+      timeout: 1000,
+      draggable: false
+    }]
   ],
 
   build: {
