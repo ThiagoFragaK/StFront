@@ -80,26 +80,26 @@ export default {
   created() {},
   methods: {
     login() {
-      this.$store.dispatch("auth/login", this.form).then((response) => {
-        if (response == 1) {
-          this.$toast.success("Logging in...", {
-            position: "top-right",
-            timeout: 5000,
-            showCloseButtonOnHover: true,
-            hideProgressBar: true,
-            icon: true,
-          });
-          console.log(this.$store.state.auth.token);
-        } else {
-          this.$toast.error(response.error, {
-            position: "top-right",
-            timeout: 5000,
-            showCloseButtonOnHover: true,
-            hideProgressBar: true,
-            icon: true,
-          });
-        }
-      });
+      console.log('Login');
+      // this.$store.dispatch("auth/login", this.form).then((response) => {
+      //   if (response == 1) {
+      //     this.$toast.success("Logging in...", {
+      //       position: "top-right",
+      //       timeout: 5000,
+      //       showCloseButtonOnHover: true,
+      //       hideProgressBar: true,
+      //       icon: true,
+      //     });
+      //   } else {
+      //     this.$toast.error(response.error, {
+      //       position: "top-right",
+      //       timeout: 5000,
+      //       showCloseButtonOnHover: true,
+      //       hideProgressBar: true,
+      //       icon: true,
+      //     });
+      //   }
+      // });
     },
   },
 };

@@ -31,11 +31,11 @@ export default {
                 return err.response.data;
             });
         },
-        logout(){
+        logout(vuexContext){
             this.$axios.setHeader('Authorization', vuexContext.state.token);
             this.$axios.$post('auth/logout')
             .then(res => {
-                return res;
+                return res.response.data;
             });
         },
         setCredentials(vuexContext){
