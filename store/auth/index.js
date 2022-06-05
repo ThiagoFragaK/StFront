@@ -1,7 +1,8 @@
 export default {
     namespaced: true,
     state: {
-        token: null
+        token: null,
+        userCredentials: {}
     },
     getters: {
         isAuthenticated(){
@@ -28,7 +29,25 @@ export default {
             })
             .catch(err => {
                 return err.response.data;
+            });
+        },
+        logout(){
+            this.$axios.setHeader('Authorization', vuexContext.state.token);
+            this.$axios.$post('auth/logout')
+            .then(res => {
+                return res;
+            });
+        },
+        setCredentials(vuexContext){
+            this.$axios.setHeader('Authorization', vuexContext.state.token);
+
+            return this.$axios.$post('auth/userInfo')
+            .then(res => {
+                return res; 
             })
+            .catch(err => {
+                return err.response.data;
+            });
         }
     },
 }

@@ -2,7 +2,11 @@
   <b-container>
     <br />
     <br />
-    <b-row v-if="!loading" align-v="center" class="justify-content-md-center mt-3">
+    <b-row
+      v-if="!loading"
+      align-v="center"
+      class="justify-content-md-center mt-3"
+    >
       <b-col lg="4" md="3"> </b-col>
       <b-col lg="4" md="3">
         <div>
@@ -76,35 +80,27 @@ export default {
   created() {},
   methods: {
     login() {
-      this.$store.dispatch('auth/login', this.form)
-        .then(response => {
-          if(response == 1){
-            this.$toast.success("Logging in...", {
-              position: "top-right",
-              timeout: 5000,
-              showCloseButtonOnHover: true,
-              hideProgressBar: true,
-              icon: true,
-            });
-          } else {
-            this.$toast.error(response.error, {
-              position: "top-right",
-              timeout: 5000,
-              showCloseButtonOnHover: true,
-              hideProgressBar: true,
-              icon: true,
-            });
-          }
-        })
-        .finally(() => {
-          this.userCredentials();
-        });
+      this.$store.dispatch("auth/login", this.form).then((response) => {
+        if (response == 1) {
+          this.$toast.success("Logging in...", {
+            position: "top-right",
+            timeout: 5000,
+            showCloseButtonOnHover: true,
+            hideProgressBar: true,
+            icon: true,
+          });
+          console.log(this.$store.state.auth.token);
+        } else {
+          this.$toast.error(response.error, {
+            position: "top-right",
+            timeout: 5000,
+            showCloseButtonOnHover: true,
+            hideProgressBar: true,
+            icon: true,
+          });
+        }
+      });
     },
-    userCredentials(){
-      console.log('Credentials');
-      let token = this.$store.state.auth.token;
-      console.log(token);
-    }
   },
 };
 </script>
