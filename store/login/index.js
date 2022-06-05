@@ -1,12 +1,12 @@
 export default {
     namespaced: true,
     state: {
-        status: false,
+        userToken: '',
     },
     getters: {},
     mutations: {
-        isLoggedIn(state) {
-            state.status = true;
+        setToken(token) {
+            state.userToken = token;
         },
     },
     actions: {},

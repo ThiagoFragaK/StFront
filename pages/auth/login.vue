@@ -2,7 +2,7 @@
   <b-container>
     <br />
     <br />
-    <b-row align-v="center" class="justify-content-md-center mt-3">
+    <b-row v-if="!loading" align-v="center" class="justify-content-md-center mt-3">
       <b-col lg="4" md="3"> </b-col>
       <b-col lg="4" md="3">
         <div>
@@ -50,6 +50,11 @@
       </b-col>
       <b-col lg="4" md="3"> </b-col>
     </b-row>
+    <b-row v-else align-v="center" class="justify-content-md-center mt-3">
+      <div class="text-center">
+        <b-spinner variant="primary" type="grow" label="Spinning"></b-spinner>
+      </div>
+    </b-row>
   </b-container>
 </template>
 
@@ -61,21 +66,37 @@ export default {
   layout: "login",
   data() {
     return {
+      loading: false,
       form: {
         name: "",
         password: "",
       },
     };
   },
+  created() {},
   methods: {
     login() {
       this.$axios.$post("login", this.form)
         .then((response) => {
-          console.log(response);
+          console.log(response.token);
+          this.$toast.success("Logging in..", {
+            position: "top-left",
+            timeout: 10000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            rtl: false
+          });
+          this.loading = true;
+          this.$store.commit('login/setToken');
+          console.log(this.$store.state.login)
+          this.userCredentials();
         })
         .catch((err) => {
           this.$toast.error("Invalid Credentials", {
-            position: "top-right",
+            position: "top-left",
             timeout: 5000,
             closeOnClick: true,
             pauseOnFocusLoss: true,
@@ -88,6 +109,15 @@ export default {
           });
         });
     },
+    userCredentials(){
+      let auth = '';
+      this.$axios.$post("auth/userInfo", {Authorization: auth})
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+        });
+    }
   },
 };
 </script>
