@@ -76,50 +76,35 @@ export default {
   created() {},
   methods: {
     login() {
-      this.$axios.$post("login", this.form)
-        .then((response) => {
-          console.log(response.token);
-          this.$toast.success("Logging in..", {
-            position: "top-left",
-            timeout: 10000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false
-          });
-          this.loading = true;
-          this.$store.commit('login/setToken');
-          console.log(this.$store.state.login)
-          this.userCredentials();
+      this.$store.dispatch('auth/login', this.form)
+        .then(response => {
+          if(response == 1){
+            this.$toast.success("Logging in...", {
+              position: "top-right",
+              timeout: 5000,
+              showCloseButtonOnHover: true,
+              hideProgressBar: true,
+              icon: true,
+            });
+          } else {
+            this.$toast.error(response.error, {
+              position: "top-right",
+              timeout: 5000,
+              showCloseButtonOnHover: true,
+              hideProgressBar: true,
+              icon: true,
+            });
+          }
         })
-        .catch((err) => {
-          this.$toast.error("Invalid Credentials", {
-            position: "top-left",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false
-          });
+        .finally(() => {
+          this.userCredentials();
         });
     },
     userCredentials(){
-      let auth = '';
-      this.$axios.$post("auth/userInfo", {Authorization: auth})
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-        });
+      console.log('Credentials');
+      let token = this.$store.state.auth.token;
+      console.log(token);
     }
   },
 };
 </script>
-// this.$store.commit('login/isLoggedIn');
-// console.log(this.$store.state.login);

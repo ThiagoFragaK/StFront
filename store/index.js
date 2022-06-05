@@ -1,11 +1,11 @@
 import Vuex from 'vuex';
 
-import login from "./login";
+import auth from "./auth";
 
 const createStore = () => {
     return new Vuex.Store({
         modules: {
-            login
+            auth
         }
     });
 }
