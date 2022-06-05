@@ -54,7 +54,6 @@ let tableColumns = [
 ];
 
 export default {
-  name: "Achievements Page",
   props: {
     id: {
       type: String,
