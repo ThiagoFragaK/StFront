@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     getData(){
-      this.$axios.$get('v1/games/recentGames')
+      this.$axios.$get('steam/games/recentGames')
         .then((response) => {
           this.tableItens = response;
           this.loaded = true;
