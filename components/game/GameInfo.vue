@@ -61,7 +61,7 @@ export default {
   methods: {
     getData() {
       var gameId = this.id;
-      this.$axios.$get(`v2/games/info/${gameId}`)
+      this.$axios.$get(`steam/games/info/${gameId}`)
         .then((response) => {
           this.gameInfo = response;
           this.loaded = true;
