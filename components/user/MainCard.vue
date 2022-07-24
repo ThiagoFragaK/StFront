@@ -11,30 +11,32 @@
                             </b-col>
                         </b-col>
                         <b-col md="5">
-                        <b-row align-v="center" class="justify-content-md-center mt-3">
-                            <div class="text-center">
-                              <b-card-body>
-                                  <h1>{{ userInfo.personaname }}</h1>
-                                  <hr/>
-                                  <b-card-text>{{ userInfo.realname }}</b-card-text>
-                                  <b-button-group>
-                                    <b-button variant="success" disabled>Average: 91%</b-button>
-                                    <b-button variant="primary" disabled>Total: 4600</b-button>
-                                    <b-button variant="primary" disabled>Perfect: 81</b-button>
-                                    <b-button v-b-toggle.moreInfo variant="primary">More Info</b-button>
-                                  </b-button-group>
-                              </b-card-body>                                     
-                            </div>
-                        </b-row>
+                          <b-row align-v="center" class="justify-content-md-center mt-3">
+                              <div class="text-center">
+                                <b-card-body>
+                                    <h1>{{ userInfo.personaname }}</h1>
+                                    <hr/>
+                                    <b-card-text>{{ userInfo.realname }}</b-card-text>
+                                    <b-button-group>
+                                      <b-button variant="success" disabled>Average: 91%</b-button>
+                                      <b-button variant="primary" disabled>Total: 4600</b-button>
+                                      <b-button variant="primary" disabled>Perfect: 81</b-button>
+                                      <b-button v-b-toggle.moreInfo variant="primary">More Info</b-button>
+                                    </b-button-group>
+                                </b-card-body>                                     
+                              </div>
+                          </b-row>
                         </b-col>
                         <b-col md="4">
                             <b-row align-v="center" class="justify-content-md-center mt-3">
                                 <div class="text-center">
-                                <b-card-body class="mr-2">
-                                  Steam ID: {{ userInfo.steamid }}
-                                  <b-button :href="userInfo.profileurl" variant="outline-primary" >Steam Profile</b-button>
-                                </b-card-body>                  
+                                  <b-card-body class="mr-2">
+                                    <b-alert variant="primary" show>Steam ID: {{ userInfo.steamid }}</b-alert>
+                                  </b-card-body>                  
+                                  <b-button variant="primary" >Update Data</b-button>
                                 </div>
+                            </b-row>
+                            <b-row>
                             </b-row>
                         </b-col>
                     </b-row>
