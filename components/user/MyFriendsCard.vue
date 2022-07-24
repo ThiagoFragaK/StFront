@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     getData(){
-      this.$axios.$get('v1/user/friendsList')
+      this.$axios.$get('steam/user/friendsList')
         .then((response) => {
           this.tableItens = response;
           this.loaded = true;

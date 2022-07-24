@@ -24,7 +24,7 @@
           <template #cell(appid)="data">
              <b-button 
               size="sm"
-              variant="outline-primary"
+              variant="primary"
               :disabled="isDisabled(data.item)"
               :to="`/game/${data.item.appid}`"
               >

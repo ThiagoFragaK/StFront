@@ -42,7 +42,7 @@
               <template #cell(gameId)="data">
                 <b-button 
                   size="sm"
-                  variant="outline-primary"
+                  variant="primary"
                   :disabled="isDisabled(data.item)"
                   :to="`/game/${data.item.gameId}`"
                   >
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     getData(){
-      this.$axios.$get('v1/games')
+      this.$axios.$get('steam/games')
         .then((response) => {
           this.tableItens = response.data;
           this.gamesCount.notPlayed = response.notPlayedCount;

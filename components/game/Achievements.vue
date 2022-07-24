@@ -72,7 +72,7 @@ export default {
   methods: {
     getData() {
       var gameId = this.id;
-      this.$axios.$get(`v2/achievements/user/${gameId}`).then((response) => {
+      this.$axios.$get(`steam/achievements/user/${gameId}`).then((response) => {
         this.tableItens = response;
         this.loaded = true;
       });
