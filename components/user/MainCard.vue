@@ -68,7 +68,7 @@
                           Below 10%: <b-button disabled pill size="sm" variant="success">2</b-button>
                         </b-tab>
                         <b-tab title="Absolute Numbers">
-                          <b-card title="Absolute Numbers" align="left">
+                          <b-card align="left">
                             Total of Achievements: <b-button disabled pill size="sm" variant="success">6890</b-button>
                             /
                             Unlocked: <b-button disabled pill size="sm" variant="success">4600</b-button>
