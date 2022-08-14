@@ -17,12 +17,16 @@
                                     <h1>{{ userInfo.personaname }}</h1>
                                     <hr/>
                                     <b-card-text>{{ userInfo.realname }}</b-card-text>
-                                    <b-button-group>
-                                      <b-button variant="success" disabled>Average: 91%</b-button>
-                                      <b-button variant="primary" disabled>Total: 4600</b-button>
-                                      <b-button variant="primary" disabled>Perfect: 81</b-button>
-                                      <b-button v-b-toggle.moreInfo variant="primary">More Info</b-button>
-                                    </b-button-group>
+                                    <div>
+                                      <b-row>
+                                        <b-col cols="4">
+                                          <h5>Percentage of Completion:</h5>
+                                        </b-col>
+                                        <b-col cols="8">
+                                          <b-progress value="81" max="106" show-progress class="mt-3"></b-progress>
+                                        </b-col>
+                                      </b-row>
+                                    </div>
                                 </b-card-body>                                     
                               </div>
                           </b-row>
@@ -34,56 +38,69 @@
                                     <b-alert variant="primary" show>Steam ID: {{ userInfo.steamid }}</b-alert>
                                   </b-card-body>                  
                                   <b-button variant="primary" >Update Data</b-button>
+                                  <b-button v-b-toggle.moreInfo variant="primary">More Info</b-button>
                                 </div>
                             </b-row>
-                            <b-row>
-                            </b-row>
+                            <br/>
                         </b-col>
                     </b-row>
                   </b-card>
                   <b-collapse id="moreInfo" class="mt-2">
-                    <b-card no-body>
-                      <b-tabs card>
-                        <b-tab title="Percentages" active>
-                          <b-card align="left">
-                            Average: <b-button disabled pill size="sm" variant="success">91%</b-button>
-                            /
-                            Achievements Unlocked, from total: <b-button disabled pill size="sm" variant="success">74%</b-button>
-                          </b-card>
-                        </b-tab>
-                        <b-tab title="Games">
-                          <b-card align="left">
-                            Total: <b-button disabled pill size="sm" variant="success">100</b-button>
-                            /
-                            Perfect: <b-button disabled pill size="sm" variant="success">81</b-button>
-                            /
-                            Below 100%: <b-button disabled pill size="sm" variant="success">19</b-button>
-                          </b-card>
-                        </b-tab>
-                        <b-tab title="Percentage Distribution">
-                          Above 80%: <b-button disabled pill size="sm" variant="success">11</b-button>
-                          /
-                          Above 50%: <b-button disabled pill size="sm" variant="success">6</b-button>
-                          /
-                          Above 30%: <b-button disabled pill size="sm" variant="success">0</b-button>
-                          /
-                          Below 10%: <b-button disabled pill size="sm" variant="success">2</b-button>
-                        </b-tab>
-                        <b-tab title="Absolute Numbers">
-                          <b-card align="left">
-                            Total of Achievements: <b-button disabled pill size="sm" variant="success">6890</b-button>
-                            /
-                            Unlocked: <b-button disabled pill size="sm" variant="success">4600</b-button>
-                            /
-                            Locked: <b-button disabled pill size="sm" variant="success">2290</b-button>
-                            /
-                            Percentage: <b-button disabled pill size="sm" variant="success">66,7%</b-button>
-                            /
-                            Percentage of Locked: <b-button disabled pill size="sm" variant="success">33,2%</b-button>
-                          </b-card>
-                        </b-tab>
-                      </b-tabs>
-                    </b-card>
+                    <br/>
+                    <b-card-group deck>
+                      <b-card header="Achievements" align="center">                    
+                        <b-row>
+                          <b-col cols="7">
+                            <h6 class="mt-1">Average of Achievements:</h6>
+                          </b-col>
+                          <b-col cols="2">
+                            <b-button disabled size="sm" variant="primary"> 91% </b-button>
+                          </b-col>
+                        </b-row>
+                        <b-row>
+                          <b-col cols="4">
+                            <h6>Percentage Distribution:</h6>
+                          </b-col>
+                          <b-col cols="8">
+                            <b-progress show-progress class="mt-2" v-b-tooltip.hover id="tooltip-percentage-distribution">
+                              <b-progress-bar variant="danger" :value="value[2]"></b-progress-bar>
+                              <b-progress-bar variant="primary" :value="value[1]"></b-progress-bar>
+                              <b-progress-bar variant="success" :value="value[0]"></b-progress-bar>
+                            </b-progress>
+                            <b-tooltip target="tooltip-percentage-distribution" triggers="hover">
+                              <b-badge pill variant="danger">Below 50%</b-badge>
+                              <b-badge pill variant="primary">Above 50%</b-badge>
+                              <b-badge pill variant="success">100%</b-badge>
+                            </b-tooltip>
+                          </b-col>
+                        </b-row>
+                        <b-row>
+                          <b-col cols="4">
+                            <h6>Percentages from total:</h6>
+                          </b-col>
+                          <b-col cols="8">
+                            <b-progress max="106" show-progress class="mt-2" v-b-tooltip.hover id="tooltip-percentage-distribution">
+                              <b-progress-bar variant="danger" :value="value[2]"></b-progress-bar>
+                              <b-progress-bar variant="primary" :value="value[1]"></b-progress-bar>
+                              <b-progress-bar variant="success" :value="value[0]"></b-progress-bar>
+                            </b-progress>
+                            <b-tooltip target="tooltip-percentage-distribution" triggers="hover">
+                              <b-badge pill variant="danger">Below 50%</b-badge>
+                              <b-badge pill variant="primary">Above 50%</b-badge>
+                              <b-badge pill variant="success">100%</b-badge>
+                            </b-tooltip>
+                          </b-col>
+                        </b-row>
+                      </b-card>
+
+                      <b-card header="Games" align="center">
+                        <b-card-text>Thrid Card</b-card-text>
+                      </b-card>
+
+                      <b-card header="Percentages" align="center">
+                        
+                      </b-card>
+                    </b-card-group>
                   </b-collapse> 
               </b-col>
             </b-row>
@@ -100,6 +117,16 @@ export default {
   data() {
     return {
         loaded: false,
+        value: [81, 19, 6],
+        achievementsInfo: {
+          
+        },
+        gamesInfo: {
+          
+        },
+        percentagesInfo: {
+          
+        },
         userInfo: {
             avatarfull: null,
             personaname: null,
