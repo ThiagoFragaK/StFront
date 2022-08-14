@@ -51,12 +51,13 @@
                       <b-card header="Achievements" align="center">                    
                         <b-row>
                           <b-col cols="7">
-                            <h6 class="mt-1">Average of Achievements:</h6>
+                            <h6 class="mt-2">Average of Achievements:</h6>
                           </b-col>
-                          <b-col cols="2">
-                            <b-button disabled size="sm" variant="primary"> 91% </b-button>
+                          <b-col cols="3">
+                            <b-button disabled size="sm" variant="primary"> 91% </b-button>                            
                           </b-col>
                         </b-row>
+                        <hr/>
                         <b-row>
                           <b-col cols="4">
                             <h6>Percentage Distribution:</h6>
