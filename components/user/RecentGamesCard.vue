@@ -16,8 +16,16 @@
               {{data.item.playTimeWeeks}} hrs / Total: {{data.item.playTimeTotal}} hrs
           </template>
           <template #cell(achievements)="data">
-              {{ getAchievements(data.item) }}
+            {{ getAchievements(data.item) }}
           </template>
+          <template #cell(progression)="data">
+              <b-progress 
+                show-progress
+                :value="data.item.achievements.unlocked" 
+                :max="data.item.achievements.total"
+                class="mt-2">
+              </b-progress>
+          </template>          
           <template #cell(appid)="data">
              <b-button 
               size="sm"
@@ -44,6 +52,7 @@ let tableColumns = [
 	{ key: "name", label: "Name", class: "text-center" },
 	{ key: "hours", label: "Played in last 2 weeks", class: "text-center" },
   { key: "achievements", label: "Achievements", class: "text-center col-2" },
+  { key: "progression", label: "Progression", class: "text-center col-2" },
   { key: "appid", label: "", class: "text-center col-1" }
 ];
 
@@ -77,9 +86,10 @@ export default {
     getAchievements(item){
       var achievements = item.achievements;
       if(!achievements){
-        return '-';
+        return '-'
       }
-      return achievements.unlocked+' of '+achievements.total+' ('+achievements.percentage+'%)';
+      return achievements.unlocked+' of '+achievements.total
+      return achievements
     }
   }
 }
