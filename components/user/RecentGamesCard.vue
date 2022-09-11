@@ -3,7 +3,7 @@
     <b-row v-if="loaded" align-v="center" class="justify-content-md-center mt-3">
       <div>
         <b-table striped hover :fields="tableColumns" :items="tableItens">
-          <template #cell(image)="data">
+          <template #cell(image)="data">            
                <b-avatar 
                 variant="dark" 
                 :src= "getImage(data.item)">
@@ -12,11 +12,8 @@
           <template #cell(name)="data">
               {{data.item.name}}
           </template>
-          <template #cell(playTimeWeeks)="data">
-              {{data.item.playTimeWeeks}} hrs
-          </template>
-          <template #cell(playTimeTotal)="data">
-              {{data.item.playTimeTotal}} hrs
+          <template #cell(hours)="data">
+              {{data.item.playTimeWeeks}} hrs / Total: {{data.item.playTimeTotal}} hrs
           </template>
           <template #cell(achievements)="data">
               {{ getAchievements(data.item) }}
@@ -45,8 +42,7 @@
 let tableColumns = [
 	{ key: "image", label: "", class: "text-center col-1" },
 	{ key: "name", label: "Name", class: "text-center" },
-	{ key: "playTimeWeeks", label: "Played in last 2 weeks", class: "text-center" },
-	{ key: "playTimeTotal", label: "Total Playtime", class: "text-center" },
+	{ key: "hours", label: "Played in last 2 weeks", class: "text-center" },
   { key: "achievements", label: "Achievements", class: "text-center col-2" },
   { key: "appid", label: "", class: "text-center col-1" }
 ];
