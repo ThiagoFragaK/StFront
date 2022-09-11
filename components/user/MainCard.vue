@@ -88,12 +88,26 @@
                 <b-row align-h="center">
                   <h6>Games Percentage Distribution:</h6>
                   <b-col cols="10">
-                    <b-progress show-progress :max="max">
+                    <b-progress show-value :max="max">
                       <b-progress-bar variant="danger" :value="value[0]"></b-progress-bar>
                       <b-progress-bar variant="warning" :value="value[1]"></b-progress-bar>
                       <b-progress-bar variant="primary" :value="value[2]"></b-progress-bar>
                       <b-progress-bar variant="success" :value="value[3]"></b-progress-bar>
                     </b-progress>
+                    <b-collapse id="gpd-info">
+                      <hr/>
+                      <b-badge pill size="sm" variant="danger"> -10% </b-badge>
+                      <b-badge pill size="sm" variant="warning"> 10% - 50% </b-badge>
+                      <b-badge pill size="sm" variant="primary"> 50% - 70% </b-badge>
+                      <b-badge pill size="sm" variant="success"> +70% </b-badge>
+                    </b-collapse>
+                  </b-col>
+                </b-row>
+                <hr/>
+                <b-row align-content="center">
+                  <b-col>
+                    <b-button>Statistics Page</b-button>
+                    <b-button v-b-toggle.gpd-info class="shadow-none" variant="primary">^</b-button>
                   </b-col>
                 </b-row>
               </b-card>
