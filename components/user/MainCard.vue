@@ -26,17 +26,17 @@
                                               <h5 class="font-weight-bold"> 168 </h5>
                                             </b-col>
                                             <b-col>
-                                              <h6> Total Games </h6>
+                                              <h6> Games </h6>
                                             </b-col>
                                           </b-row>
                                         </b-col>
                                         <b-col>
                                           <b-row >
                                             <b-col>
-                                              <h5 class="font-weight-bold"> 168 </h5>
+                                              <h5 class="font-weight-bold"> 4752 </h5>
                                             </b-col>
                                             <b-col>
-                                              <h6> Total Games </h6>
+                                              <h6> Achievements </h6>
                                             </b-col>
                                           </b-row>
                                         </b-col>
@@ -84,73 +84,22 @@
             </b-card>
             <br/>
             <b-card-group deck>
-              <b-card header="Achievements" align="center">                    
-                <b-row>
-                  <b-col cols="7">
-                    <h6 class="mt-2">Average of Achievements:</h6>
-                  </b-col>
-                  <b-col cols="3">
-                    <b-button disabled size="sm" variant="primary"> 91% </b-button>                            
-                  </b-col>
-                </b-row>
-                <hr/>
-                <b-row>
-                  <b-col cols="4">
-                    <h6>Percentage Distribution:</h6>
-                  </b-col>
-                  <b-col cols="8">
-                    <b-progress show-progress class="mt-2" v-b-tooltip.hover id="tooltip-percentage-distribution">
-                      <b-progress-bar variant="danger" :value="value[2]"></b-progress-bar>
-                      <b-progress-bar variant="primary" :value="value[1]"></b-progress-bar>
-                      <b-progress-bar variant="success" :value="value[0]"></b-progress-bar>
+              <b-card header="Statistics" align="center">
+                <b-row align-h="center">
+                  <h6>Games Percentage Distribution:</h6>
+                  <b-col cols="10">
+                    <b-progress show-progress :max="max">
+                      <b-progress-bar variant="danger" :value="value[0]"></b-progress-bar>
+                      <b-progress-bar variant="warning" :value="value[1]"></b-progress-bar>
+                      <b-progress-bar variant="primary" :value="value[2]"></b-progress-bar>
+                      <b-progress-bar variant="success" :value="value[3]"></b-progress-bar>
                     </b-progress>
-                    <b-tooltip target="tooltip-percentage-distribution" triggers="hover">
-                      <b-badge pill variant="danger">Below 50%</b-badge>
-                      <b-badge pill variant="primary">Above 50%</b-badge>
-                      <b-badge pill variant="success">100%</b-badge>
-                    </b-tooltip>
-                  </b-col>
-                </b-row>
-                <b-row>
-                  <b-col cols="4">
-                    <h6>Percentages from total:</h6>
-                  </b-col>
-                  <b-col cols="8">
-                    <b-progress max="106" show-progress class="mt-2" v-b-tooltip.hover id="tooltip-percentage-distribution">
-                      <b-progress-bar variant="danger" :value="value[2]"></b-progress-bar>
-                      <b-progress-bar variant="primary" :value="value[1]"></b-progress-bar>
-                      <b-progress-bar variant="success" :value="value[0]"></b-progress-bar>
-                    </b-progress>
-                    <b-tooltip target="tooltip-percentage-distribution" triggers="hover">
-                      <b-badge pill variant="danger">Below 50%</b-badge>
-                      <b-badge pill variant="primary">Above 50%</b-badge>
-                      <b-badge pill variant="success">100%</b-badge>
-                    </b-tooltip>
                   </b-col>
                 </b-row>
               </b-card>
 
-              <b-card header="Games" align="center">
-                <b-row>
-                  <b-col cols="4">
-                    <h6>Played games:</h6>
-                  </b-col>
-                  <b-col cols="8">
-                    <b-progress show-progress class="mt-2" v-b-tooltip.hover id="tooltip-percentage-distribution">
-                      <b-progress-bar variant="danger" :value="value[2]"></b-progress-bar>
-                      <b-progress-bar variant="primary" :value="value[1]"></b-progress-bar>
-                    </b-progress>
-                    <b-tooltip target="tooltip-percentage-distribution" triggers="hover">
-                      <b-badge pill variant="primary">Not played</b-badge>
-                      <b-badge pill variant="success">Played</b-badge>
-                    </b-tooltip>
-                  </b-col>
-                </b-row>
-              </b-card>
-
-              <b-card header="Percentages" align="center">
-                
-              </b-card>
+              <b-card header="Games" align="center"></b-card>
+              <b-card header="Friends" align="center"></b-card>
             </b-card-group>
         </b-col>
       </b-row>
@@ -166,7 +115,7 @@ export default {
   data() {
     return {
         loaded: false,
-        value: [81, 19, 6],
+        value: [0, 5, 3, 14],
         achievementsInfo: {
           
         },
@@ -195,5 +144,17 @@ export default {
       });
     },
   },
+  computed: {
+    max(){
+      let quantities = this.value
+      let sum = 0
+
+      for(let i = 0; i < quantities.length; i++){
+        sum += quantities[i]
+      }
+
+      return sum;
+    }
+  }
 };
 </script>
