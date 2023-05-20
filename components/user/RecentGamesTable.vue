@@ -1,8 +1,15 @@
 <template>
   <b-container>
-    <b-row v-if="loaded" align-v="center" class="justify-content-md-center mt-3">
+    <b-row align-v="center" class="justify-content-md-center mt-3">
       <div>
-        <b-table striped hover :fields="tableColumns" :items="tableItens">
+        <b-table 
+          striped 
+          hover
+          outlined
+          :busy="config.isLoading"
+          :fields="tableColumns" 
+          :items="recentGames"
+          >
           <template #cell(image)="data">            
                <b-avatar 
                 variant="dark" 
@@ -13,7 +20,7 @@
               {{data.item.name}}
           </template>
           <template #cell(hours)="data">
-              {{data.item.playTimeWeeks}} hrs / Total: {{data.item.playTimeTotal}} hrs
+              {{data.item.playTimeWeeks}} hrs
           </template>
           <template #cell(achievements)="data">
             {{ getAchievements(data.item) }}
@@ -21,6 +28,7 @@
           <template #cell(progression)="data">
               <b-progress 
                 show-progress
+                height="5px"
                 :value="data.item.achievements.unlocked" 
                 :max="data.item.achievements.total"
                 class="mt-2">
@@ -36,11 +44,14 @@
               Achievements
             </b-button>
 					</template>
+          <template #table-busy>
+            <div class="text-center text-danger my-2">
+              <b-spinner class="align-middle" variant="primary"></b-spinner>
+              <strong class="text-primary"> Fetching data from Steam API.. </strong>
+            </div>
+          </template>
         </b-table>
       </div>
-    </b-row>
-    <b-row v-else-if="!loaded" align-v="center" class="justify-content-md-center mt-3">
-      <b-spinner variant="primary"></b-spinner>
     </b-row>
   </b-container>
 </template>
@@ -50,47 +61,52 @@
 let tableColumns = [
 	{ key: "image", label: "", class: "text-center col-1" },
 	{ key: "name", label: "Name", class: "text-center" },
-	{ key: "hours", label: "Played in last 2 weeks", class: "text-center" },
+	{ key: "hours", label: "Played in 2 weeks", class: "text-center" },
   { key: "achievements", label: "Achievements", class: "text-center col-2" },
   { key: "progression", label: "Progression", class: "text-center col-2" },
   { key: "appid", label: "", class: "text-center col-1" }
 ];
 
 export default {
-  name: 'UserPage',
+  name: 'RecentGamesTable',
   data(){
     return {
-      loaded: false,
-      tableItens: {},
-      tableColumns
+      tableColumns,
+      recentGames: [],
+      config: {
+        isLoading: true
+      },
     };
   },
-  created() {
-    this.getData();
-  },
   methods: {
-    getData(){
-      this.$axios.$get('steam/games/recentGames')
+    getRecentGames(){
+      this.config.isLoading = true;
+      this.$axios.$get('games/recent_games?steam_id=76561198081645453')
         .then((response) => {
-          this.tableItens = response;
-          this.loaded = true;
+          if(response.status){
+            this.recentGames = response.recent_games;
+            console.log(response);
+          }
         }
-      )
+      ).finally(() => {
+        this.config.isLoading = false;
+      });
     },
     getImage(data){
       return `http://media.steampowered.com/steamcommunity/public/images/apps/${data.appid}/${data.image}.jpg`;
     },
     isDisabled(item){
-      return item.achievements ? false : true;
+      return item.achievements.length > 0;
     },
     getAchievements(item){
       var achievements = item.achievements;
-      if(!achievements){
-        return '-'
-      }
-      return achievements.unlocked+' of '+achievements.total
-      return achievements
+
+      if(achievements.length > 0) return "-";
+      return achievements.unlocked + " of " + achievements.total;
     }
-  }
+  },
+  created() {
+    this.getRecentGames();
+  },
 }
 </script>
