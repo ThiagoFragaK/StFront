@@ -2,7 +2,7 @@ export default {
   ssr: false,
 
   head: {
-    title: 'SteamFront',
+    title: "TK's Calculator",
     htmlAttrs: {
       lang: 'en'
     },
@@ -22,7 +22,6 @@ export default {
   },
 
   css: [
-    '~/assets/css/theme.css'
   ],
 
   plugins: [
