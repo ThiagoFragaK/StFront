@@ -22,6 +22,7 @@ export default {
   },
 
   css: [
+    '~/assets/css/theme.css'
   ],
 
   plugins: [
@@ -35,6 +36,7 @@ export default {
   components: true,
 
   buildModules: [
+    '@nuxtjs/google-fonts',
   ],
 
   modules: [
