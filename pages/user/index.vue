@@ -2,21 +2,24 @@
   <b-container>
     <b-row align-v="center" class="justify-content-md-center mt-3">
       <b-col lg="12">
-        <main-card />
+        <main-card @reload="reloadTable()" />
       </b-col>
     </b-row>
     <b-row align-v="center" class="justify-content-md-center mt-3">
-      <recent-games-card />
+      <recent-games-table ref="RecentGamesTable" />
     </b-row>
   </b-container>
 </template>
 
 <script>
 import MainCard from '../../components/user/MainCard.vue';
-import RecentGamesCard from '../../components/user/RecentGamesCard.vue';
+import RecentGamesTable from '../../components/user/RecentGamesTable.vue';
 
 export default {
-  components: { MainCard, RecentGamesCard },
+  components: { 
+    MainCard, 
+    RecentGamesTable
+  },
   name: 'UserPage',
   data(){
     return {
@@ -27,6 +30,9 @@ export default {
   methods: {
     getData(){
      
+    },
+    reloadTable(){
+      this.$refs.RecentGamesTable.getRecentGames();
     }
   }
 }
