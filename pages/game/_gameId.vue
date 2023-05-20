@@ -1,40 +1,47 @@
 <template>
   <b-container>
     <b-row align-v="center" class="justify-content-md-center mt-3">
-      <b-row align-v="center" class="justify-content-md-center mt-3">
-        
+      <b-row align-v="center" class="justify-content-md-center mt-3">        
+        <b-col lg="12" class="mt-3 mb-3">
+          <game-info-card 
+            @reload="reload()" 
+            :gameid= "gameID"
+          />
+        </b-col>
         <b-col lg="12">
-          <game-info :id= "gameId"/>
+          <achievements-table 
+            :gameid= "gameID" 
+            ref="AchievementsTable"
+          />
         </b-col>
-
-        <b-col lg="12">
-          <br/>
-        </b-col>
-
-        <b-col lg="12" >
-          <achievements :id= "gameId"/>
-        </b-col>
-
       </b-row>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import Achievements from '../../components/game/Achievements.vue';
-import GameInfo from '../../components/game/GameInfo.vue';
+import AchievementsTable from '../../components/game/AchievementsTable.vue';
+import GameInfoCard from '../../components/game/GameInfoCard.vue';
 
 export default {
-    components: { Achievements, GameInfo },
+    components: { 
+      AchievementsTable, 
+      GameInfoCard 
+    },
     name: "MyGamesPage",
     data(){
         return {
-          gameId: this.$route.params.gameId
+          gameID: this.$route.params.gameId
         };
     },
-    created() {
-    },
     methods: {
-    }
+      reload(){
+        console.log('realod!')
+        this.$refs.AchievementsTable.getAchievements()
+      }
+    },
+    created() {
+      console.log(this.gameID)
+    },
 };
 </script>
