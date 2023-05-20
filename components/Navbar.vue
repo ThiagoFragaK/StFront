@@ -1,36 +1,33 @@
 <template>
-  <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
       <b-navbar-brand to="/">
         <b-img
-          src="~/assets/images/SeiteName.png"
           rounded
           width="250"
           height="20"
           alt="Rounded image"
+          class="ml-3 mr-3"
+          src="~/assets/images/SeiteName.png"
         >
         </b-img>
       </b-navbar-brand>
-
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-navbar-nav>
-            <b-nav-item to="/user">User</b-nav-item>
-          </b-navbar-nav>
+      <button 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarColor01" 
+        aria-controls="navbarColor01" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <b-navbar-nav class="ml-4">
+        <b-navbar-nav>
+          <b-nav-item to="/user" class="active">User</b-nav-item>
         </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-  </div>
+      </b-navbar-nav>
+    </div>
+  </nav>
 </template>
-
-<script>
-import Toast from "vue-toastification";
-
-export default {
-  data() {
-    return {};
-  },
-  created() {},
-  methods: {},
-};
-</script>
