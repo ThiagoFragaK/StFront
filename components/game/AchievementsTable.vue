@@ -71,7 +71,7 @@ export default {
       this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=76561198081645453`)
         .then((response) => {
           console.log(response)
-          this.achievements = response;
+          this.achievements = response.stats;
         }).finally(() => {
           this.config.isLoading = false;
         });
