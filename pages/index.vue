@@ -13,10 +13,24 @@
           <b-card-text>
             <div class="form-group mt-2">
               <label class="form-label mt-4">Your SteamID</label>
-              <input type="email" class="form-control" id="steam_id" placeholder="0000000000000000000">
+              <input v-model="steam_id" class="form-control" id="steam_id" placeholder="0000000000000000000">
             </div>
-            <div class="form-group mt-4">
-              <b-button variant="outline-primary">Authenticate ID</b-button>
+            <div class="form-group mt-4">              
+              <b-button 
+                v-if="config.isLoading" 
+                variant="primary" 
+                disabled
+              >
+                <b-spinner small type="grow"></b-spinner>
+                Authenticating..
+              </b-button>
+              <b-button
+                v-else
+                @click="authenticateKey()" 
+                variant="outline-primary"
+              >
+                Authenticate ID
+              </b-button>
             </div>
             <small class="form-text text-muted">We'll check if the SteamID exists and then bring your information.</small>
           </b-card-text>
@@ -66,12 +80,29 @@ export default {
   data(){
     return {
       passwordField: true,
+      steam_id: undefined,
+      config: {
+        isLoading: false,
+      }
     };
   },
   methods: {
     changePasswordFieldType(){
       this.passwordField = !this.passwordField;
     },
+    authenticateKey(){
+      this.config.isLoading = true;
+
+      this.$axios.$post(`visitor/auth`, { key: this.steam_id })
+        .then((response) => {
+          if(response.status) {
+            return this.$toast.success(response.message)
+          }
+          this.$toast.error(response.error)
+        }).finally(() => {
+          this.config.isLoading = false;
+        });
+    }
   },
   computed: {
     inputType(){
