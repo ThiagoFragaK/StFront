@@ -43,7 +43,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     ["vue-toastification/nuxt", {
-      timeout: 1000,
+      timeout: 6000,
       draggable: false
     }]
   ],
@@ -52,5 +52,25 @@ export default {
     vendor : [
       'vue-apexchart'
    ]
+  },
+
+  toast: {
+    position: 'top-center',
+      register: [
+        {
+          name: 'success',
+          options: {
+            type: 'success',
+            timeout: 5000,            
+          }
+        },
+        {
+          name: 'error',
+          options: {
+            type: 'error',
+            timeout: 5000,
+          }
+        }
+      ]
   }
 }
