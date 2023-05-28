@@ -92,16 +92,17 @@ export default {
     },
     authenticateKey(){
       this.config.isLoading = true;
-
+      
       this.$axios.$post(`visitor/auth`, { key: this.steam_id })
         .then((response) => {
           if(response.status) {
-            return this.$toast.success(response.message)
-          }
-          this.$toast.error(response.error)
-        }).finally(() => {
-          this.config.isLoading = false;
-        });
+              this.$store.commit('auth/SET_STEAM_ID', this.steam_id);
+              return this.$toast.success(response.message)
+            }
+            this.$toast.error(response.error)
+          }).finally(() => {
+            this.config.isLoading = false;
+          });
     }
   },
   computed: {
