@@ -17,14 +17,9 @@ import VisitorsForm from '../components/main_page/VisitorsForm.vue';
 import LoginForm from '../components/main_page/LoginForm.vue';
 
 export default {
-  name: 'IndexPage',
   components: {
     VisitorsForm,
     LoginForm,
-  },
-  data(){
-    return {
-    };
   },
 }
 </script>
