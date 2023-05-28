@@ -23,7 +23,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <b-navbar-nav class="ml-4">
+      <b-navbar-nav class="ml-4" v-if="hasSteamID">
         <b-navbar-nav>
           <b-nav-item to="/user" class="active">User</b-nav-item>
         </b-navbar-nav>
@@ -31,3 +31,13 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  computed: {
+    hasSteamID() {
+      return this.$store.state.auth.steamID !== undefined;
+    },
+  },
+};
+</script>
