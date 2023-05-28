@@ -7,7 +7,13 @@
         <b-card-text>
             <div class="form-group mt-2">
                 <label class="form-label mt-4">Your SteamID</label>
-                <input v-model="steam_id" class="form-control" id="steam_id" placeholder="0000000000000000000">
+                <input 
+                    type="text"
+                    v-model="steam_id" 
+                    class="form-control" 
+                    placeholder="0000000000000000000"
+                    id="steam_id" 
+                />
             </div>
             <div class="form-group mt-4">              
                 <b-button 
@@ -32,13 +38,7 @@
 </template>
   
 <script>
-import { ValidationProvider } from 'vee-validate';
-
 export default {
-    name: 'IndexPage',
-    components: {
-        ValidationProvider
-    },
     data(){
         return {
             steam_id: undefined,
@@ -49,13 +49,14 @@ export default {
     },
     methods: {
         authenticateKey(){
+            if(this.steam_id === undefined || this.steam_id.length < 10) return this.$toast.error("The written Key isn't valid");
             this.config.isLoading = true;
             
             this.$axios.$post(`visitor/auth`, { key: this.steam_id })
                 .then((response) => {
-                if(response.status) {
-                    this.$store.commit('auth/SET_STEAM_ID', this.steam_id);
-                    return this.$toast.success(response.message)
+                    if(response.status) {
+                        this.$store.commit('auth/SET_STEAM_ID', this.steam_id);
+                        return this.$toast.success(response.message)
                     }
                     this.$toast.error(response.error)
                 }).finally(() => {
