@@ -42,6 +42,7 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    'nuxt-material-design-icons-iconfont',
     ["vue-toastification/nuxt", {
       timeout: 6000,
       draggable: false
