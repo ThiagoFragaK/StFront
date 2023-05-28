@@ -10,8 +10,7 @@
                 <input 
                     type="text"
                     v-model="steam_id" 
-                    class="form-control" 
-                    placeholder="0000000000000000000"
+                    class="form-control"
                     id="steam_id" 
                 />
             </div>
@@ -32,7 +31,11 @@
                     Authenticate ID
                 </b-button>
             </div>
-            <small class="form-text text-muted">We'll check if the SteamID exists and then bring your information.</small>
+            <small 
+                class="form-text text-muted"
+            > 
+                We'll check if the SteamID exists and then bring your information.
+            </small>
         </b-card-text>
     </b-card> 
 </template>
