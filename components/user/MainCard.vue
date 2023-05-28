@@ -42,7 +42,11 @@
 
 <script>
 export default {
-  name: "MainCard",
+  props: {
+    steamID: {
+      required: true,
+    }
+  },
   data() {
     return {
       config: {
@@ -59,14 +63,12 @@ export default {
   },
   methods: {
     getPlayersInfo() {
-      this.$axios.$get("/players?steam_id=76561198081645453")
+      this.$axios.$get(`/players?steam_id=` + this.steamID)
         .then((response) => {
           if(response.status)
           {
             this.playersDetails = response.player_details;            
           }
-          //show notification of error
-          console.log(response)
         }
       ).finally(() => {
         this.config.isLoading = false;
@@ -76,8 +78,6 @@ export default {
       this.getPlayersInfo();
       this.$emit('reload');
     },
-  },
-  computed: {
   },
   created() {
     this.getPlayersInfo();

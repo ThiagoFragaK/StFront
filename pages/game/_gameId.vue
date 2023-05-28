@@ -24,11 +24,11 @@ import AchievementsTable from '../../components/game/AchievementsTable.vue';
 import GameInfoCard from '../../components/game/GameInfoCard.vue';
 
 export default {
+    middleware: ['auth_steam'],
     components: { 
       AchievementsTable, 
       GameInfoCard 
     },
-    name: "MyGamesPage",
     data(){
         return {
           gameID: this.$route.params.gameId
@@ -36,12 +36,8 @@ export default {
     },
     methods: {
       reload(){
-        console.log('realod!')
         this.$refs.AchievementsTable.getAchievements()
       }
-    },
-    created() {
-      console.log(this.gameID)
     },
 };
 </script>

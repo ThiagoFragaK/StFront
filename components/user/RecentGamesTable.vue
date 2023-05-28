@@ -68,7 +68,11 @@ let tableColumns = [
 ];
 
 export default {
-  name: 'RecentGamesTable',
+  props:{
+    steamID: {
+      required: true,
+    }
+  },
   data(){
     return {
       tableColumns,
@@ -81,11 +85,10 @@ export default {
   methods: {
     getRecentGames(){
       this.config.isLoading = true;
-      this.$axios.$get('games/recent_games?steam_id=76561198081645453')
+      this.$axios.$get(`games/recent_games?steam_id=` + this.steamID)
         .then((response) => {
           if(response.status){
             this.recentGames = response.recent_games;
-            console.log(response);
           }
         }
       ).finally(() => {
