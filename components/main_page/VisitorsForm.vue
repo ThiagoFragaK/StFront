@@ -58,8 +58,10 @@ export default {
             this.$axios.$post(`visitor/auth`, { key: this.steam_id })
                 .then((response) => {
                     if(response.status) {
+                        this.$toast.success(response.message);
                         this.$store.commit('auth/SET_STEAM_ID', this.steam_id);
-                        return this.$toast.success(response.message)
+                        this.$router.push({ name: "user" });
+                        return;
                     }
                     this.$toast.error(response.error)
                 }).finally(() => {

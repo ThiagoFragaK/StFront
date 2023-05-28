@@ -45,7 +45,6 @@
               <b-col align-h="center">
                 <h5>Game hours</h5>
                 <hr/>
-                
               </b-col>
               <b-col align-h="center">
                 <h5>User achievements stats</h5>
@@ -80,13 +79,12 @@ export default {
     };
   },
   methods: {
-    getData() {
+    getGameDetails() {
       this.$axios.$get(`games/details?game_id=${this.gameid}`)
         .then((response) => {
           if(response.status)
           {
             this.gameDetails = response.game_details
-            console.log(response.game_details)
           }
       }).finally(() => {
         this.config.isLoading = false;
@@ -94,7 +92,7 @@ export default {
     },
   },
   created() {
-    this.getData();
+    this.getGameDetails();
   },
 };
 </script>

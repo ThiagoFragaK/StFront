@@ -68,14 +68,18 @@ export default {
   methods: {
     getAchievements() {
       this.config.isLoading = true;
-      this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=76561198081645453`)
+      this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=${this.steamID}`)
         .then((response) => {
-          console.log(response)
           this.achievements = response.stats;
         }).finally(() => {
           this.config.isLoading = false;
         });
     },
+  },
+  computed: {
+    steamID() {
+      return this.$store.state.auth.steamID;
+    }
   },
   created() {
     this.getAchievements();
