@@ -25,8 +25,6 @@ export default {
     return {
     };
   },
-  created() {
-  },
   methods: {
     getData(){
      
@@ -34,6 +32,13 @@ export default {
     reloadTable(){
       this.$refs.RecentGamesTable.getRecentGames();
     }
-  }
+  },
+  computed: {
+    steamID() {
+      return this.$store.state.auth.steamID;
+    }
+  },
+  created() {
+  },
 }
 </script>
