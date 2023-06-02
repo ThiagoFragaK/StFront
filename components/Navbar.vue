@@ -25,7 +25,17 @@
       </button>
       <b-navbar-nav class="ml-4" v-if="hasSteamID">
         <b-navbar-nav>
-          <b-nav-item to="/user" class="active">User</b-nav-item>
+          <b-nav-item 
+            to="/user" 
+            class="active"
+          >
+            <b-button
+              variant="primary" 
+              class="material-icons"
+            >
+              person
+            </b-button>
+        </b-nav-item>
         </b-navbar-nav>
       </b-navbar-nav>
     </div>

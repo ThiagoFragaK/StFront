@@ -35,13 +35,14 @@
               </b-progress>
           </template>          
           <template #cell(appid)="data">
-             <b-button 
+             <b-button
               size="sm"
               variant="primary"
+              class="material-icons"
               :disabled="isDisabled(data.item)"
               :to="`/game/${data.item.appid}`"
               >
-              Achievements
+              apps
             </b-button>
 					</template>
           <template #table-busy>

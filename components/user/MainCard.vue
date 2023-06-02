@@ -29,7 +29,7 @@
                     <b-row align-v="center" class="justify-content-md-center mt-4">
                         <div class="text-center">                 
                           <b-button disabled variant="primary" >Steam ID: {{ playersDetails.steamid }}</b-button>
-                          <b-button @click="reloadInformation()" variant="primary" >Reload</b-button>
+                          <b-button @click="reloadInformation()" variant="primary" class="material-icons" >refresh</b-button>
                         </div>
                     </b-row>
                   </b-col>
