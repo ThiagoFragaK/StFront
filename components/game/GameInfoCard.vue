@@ -20,7 +20,7 @@
                     <h3>{{ gameDetails.game_name }}</h3>
                   </b-col>
                   <b-col lg="2">
-                    <b-button @click="$emit('reload')" variant="primary" >Reload</b-button>
+                    <b-button @click="$emit('reload')" variant="primary" class="material-icons" >refresh</b-button>
                   </b-col>
                 </b-row>
                 <hr/>
