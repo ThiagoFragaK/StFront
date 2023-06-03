@@ -100,14 +100,14 @@ export default {
       return `http://media.steampowered.com/steamcommunity/public/images/apps/${data.appid}/${data.image}.jpg`;
     },
     isDisabled(item){
-      return item.achievements.length > 0;
+      return item.achievements.length <= 0;
     },
     getAchievements(item){
       var achievements = item.achievements;
 
-      if(achievements.length > 0) return "-";
+      if(achievements.length <= 0) return "-";
       return achievements.unlocked + " of " + achievements.total;
-    }
+    },
   },
   created() {
     this.getRecentGames();
