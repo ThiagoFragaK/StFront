@@ -6,6 +6,7 @@
             striped 
             hover
             outlined
+            id="gamesTable"
             :busy="config.isLoading"
             :fields="tableColumns" 
             :items="gamesList"
@@ -43,6 +44,13 @@
               </div>
             </template>
           </b-table>
+
+          <b-pagination
+            v-model="config.page"
+            aria-controls="gamesTable"
+            :total-rows="config.pagesTotal"
+            @change="getGames($event)"
+          ></b-pagination>
         </div>
       </b-row>
     </b-container>
@@ -69,17 +77,22 @@
         tableColumns,
         gamesList: [],
         config: {
-          isLoading: true
+          isLoading: true,
+          page: 1,
+          pagesTotal: 5,
         },
       };
     },
     methods: {
-      getGames(){
+      getGames(page = this.config.page){
+        this.config.page = page;
         this.config.isLoading = true;
-        this.$axios.$get(`games/list?steam_id=` + this.steamID)
+
+        this.$axios.$get(`games/list?steam_id=${this.steamID}&page=${page}`)
           .then((response) => {
             if(response.status){
               this.gamesList = response.games_list;
+              this.config.pagesTotal = response.last_page;
             }
           }
         ).finally(() => {
