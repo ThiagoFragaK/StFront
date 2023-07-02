@@ -48,8 +48,9 @@
                 <b-pagination
                     v-model="config.page"
                     aria-controls="gamesTable"
-                    :total-rows="config.pagesTotal"
+                    :total-rows="totalPages"
                     @change="getGames($event)"
+                    @input="getGames($event)"
                 ></b-pagination>
             </div>
         </b-row>
@@ -76,9 +77,9 @@ let tableColumns = [
         tableColumns,
         gamesList: [],
         config: {
-          isLoading: true,
-          page: 1,
-          pagesTotal: 5,
+            isLoading: true,
+            page: 1,
+            pagesTotal: 50,
         },
       };
     },
@@ -89,9 +90,10 @@ let tableColumns = [
 
             this.$axios.$get(`games/list?steam_id=${this.steamID}&page=${page}`)
                 .then((response) => {
-                    if(response.status){
-                        this.gamesList = response.games_list;
-                        this.config.pagesTotal = response.last_page;
+                    console.log(response)
+                    if(response.status) {
+                        this.gamesList = response.games_list.data;
+                        this.config.pagesTotal = response.games_list.last_page;
                     }
                 }
             ).finally(() => {
@@ -103,6 +105,11 @@ let tableColumns = [
         },
         isDisabled(item){
             return !item.has_achievements;
+        },
+    },
+    computed: {
+        totalPages() {
+            return this.config.pagesTotal;
         },
     },
   }

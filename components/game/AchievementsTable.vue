@@ -62,16 +62,21 @@ export default {
             achievements: [],
             config: {
                 isLoading: true,
+                page: 1,
+                lastPage: 2,
             },
         };
     },
     methods: {
-        getAchievements() {
+        getAchievements(page = this.config.page) {
             this.config.isLoading = true;
-            this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=${this.steamID}`)
+            this.config.page = page;
+
+            this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=${this.steamID}&page=${page}`)
                 .then((response) => {
                     console.log(response)
-                    this.achievements = response.stats;
+                    this.achievements = response.stats.data;
+                    this.config.lastPage = response.stats.data.last_page;
                 }).finally(() => {
                     this.config.isLoading = false;
                 });

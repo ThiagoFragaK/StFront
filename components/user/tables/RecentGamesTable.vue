@@ -79,17 +79,23 @@ export default {
             tableColumns,
             recentGames: [],
             config: {
-                isLoading: true
+                isLoading: true,
+                page: 1,
+                lastPage: 2,
             },
         };
     },
     methods: {
-        getRecentGames(){
+        getRecentGames(page = this.config.page) {
             this.config.isLoading = true;
-            this.$axios.$get(`games/recent_games?steam_id=` + this.steamID)
+            this.config.page = page;
+            
+            this.$axios.$get(`games/recent_games?steam_id=${this.steamID}&page=${page}`)
                 .then((response) => {
+                    console.log(response)
                     if(response.status){
-                    this.recentGames = response.recent_games;
+                        this.recentGames = response.recent_games.data;
+                        this.config.lastPage = response.recent_games.last_page;
                     }
                 }
                 ).finally(() => {
