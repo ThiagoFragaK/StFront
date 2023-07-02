@@ -1,45 +1,45 @@
 <template>
-  <b-container>
+    <b-container>
     <b-row
-      align-v="center"
-      class="justify-content-md-center mt-3"
+        align-v="center"
+        class="justify-content-md-center mt-3"
     >
-      <div>
+        <div>
         <b-table 
-          striped 
-          hover
-          outlined
-          :busy="config.isLoading" 
-          :fields="tableColumns" 
-          :items="achievements"
+            striped 
+            hover
+            outlined
+            :busy="config.isLoading" 
+            :fields="tableColumns" 
+            :items="achievements"
         >
-          <template #cell(icon)="data">
-            <b-avatar 
-              rounded 
-              variant="dark" 
-              :src="data.item.icon"
-            >
-            </b-avatar>
-          </template>
-          <template #cell(name)="data">
-            {{ data.item.name }}
-          </template>
-          <template #cell(description)="data">
-            {{ data.item.description }}
-          </template>
-          <template #cell(unlocked)="data">
-            {{ data.item.unlocked }}
-          </template>
-          <template #table-busy>
-            <div class="text-center text-danger my-2">
-              <b-spinner class="align-middle" variant="primary"></b-spinner>
-              <strong class="text-primary"> Fetching data from Steam API.. </strong>
-            </div>
-          </template>
+            <template #cell(icon)="data">
+                <b-avatar 
+                    rounded 
+                    variant="dark" 
+                    :src="data.item.icon"
+                >
+                </b-avatar>
+            </template>
+            <template #cell(name)="data">
+                {{ data.item.name }}
+            </template>
+            <template #cell(description)="data">
+                {{ data.item.description }}
+            </template>
+            <template #cell(unlocked)="data">
+                {{ data.item.unlocked }}
+            </template>
+            <template #table-busy>
+                <div class="text-center text-danger my-2">
+                    <b-spinner class="align-middle" variant="primary"></b-spinner>
+                    <strong class="text-primary"> Fetching data from Steam API.. </strong>
+                </div>
+            </template>
         </b-table>
-      </div>
+        </div>
     </b-row>
-  </b-container>
+    </b-container>
 </template>
 
 <script>
@@ -51,38 +51,39 @@ let tableColumns = [
 ];
 
 export default {
-  props: {
-    gameid: {
-      type: String,
+    props: {
+        gameid: {
+            type: String,
+        },
     },
-  },
-  data() {
-    return {
-      tableColumns,
-      achievements: [],
-      config: {
-        isLoading: true,
-      },
-    };
-  },
-  methods: {
-    getAchievements() {
-      this.config.isLoading = true;
-      this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=${this.steamID}`)
-        .then((response) => {
-          this.achievements = response.stats;
-        }).finally(() => {
-          this.config.isLoading = false;
-        });
+    data() {
+        return {
+            tableColumns,
+            achievements: [],
+            config: {
+                isLoading: true,
+            },
+        };
     },
-  },
-  computed: {
-    steamID() {
-      return this.$store.state.auth.steamID;
-    }
-  },
-  created() {
-    this.getAchievements();
-  },
+    methods: {
+        getAchievements() {
+            this.config.isLoading = true;
+            this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=${this.steamID}`)
+                .then((response) => {
+                    console.log(response)
+                    this.achievements = response.stats;
+                }).finally(() => {
+                    this.config.isLoading = false;
+                });
+        },
+    },
+    computed: {
+        steamID() {
+            return this.$store.state.auth.steamID;
+        }
+    },
+    created() {
+        this.getAchievements();
+    },
 };
 </script>
