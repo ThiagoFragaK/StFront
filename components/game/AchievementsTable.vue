@@ -87,7 +87,6 @@ export default {
 
             this.$axios.$get(`games/stats?game_id=${this.gameid}&steam_id=${this.steamID}&page=${page}`)
                 .then((response) => {
-                    console.log(response)
                     this.achievements = response.stats.data;
                     this.config.perPage = response.stats.per_page;
                     this.config.pagesTotal = response.stats.total_count;

@@ -105,7 +105,6 @@ export default {
             
             this.$axios.$get(`games/recent_games?steam_id=${this.steamID}&page=${page}`)
                 .then((response) => {
-                    console.log(response)
                     if(response.status){
                         this.recentGames = response.recent_games.data;
                         this.config.perPage = response.recent_games.per_page;
