@@ -45,7 +45,7 @@
                     </template>
                 </b-table>
 
-                <div v-if="!config.isLoading">
+                <div v-if="showPaginatior">
                     <b-pagination
                         first-number
                         last-number
@@ -114,8 +114,8 @@ let tableColumns = [
         },
     },
     computed: {
-        hasData() {
-            return this.gamesList.length > 0;
+        showPaginatior() {
+            return this.config.pagesTotal > 1;
         }
     },
   }
