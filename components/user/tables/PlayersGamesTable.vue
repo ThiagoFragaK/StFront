@@ -45,13 +45,18 @@
                     </template>
                 </b-table>
 
-                <b-pagination
-                    v-model="config.page"
-                    aria-controls="gamesTable"
-                    :total-rows="totalPages"
-                    @change="getGames($event)"
-                    @input="getGames($event)"
-                ></b-pagination>
+                <div v-if="!config.isLoading">
+                    <b-pagination
+                        first-number
+                        last-number
+                        align="fill"
+                        v-model="config.page"
+                        aria-controls="gamesTable"
+                        :total-rows="config.pagesTotal"
+                        :per-page="config.perPage"
+                        @change="getGames($event)"
+                    ></b-pagination>
+                </div>
             </div>
         </b-row>
     </b-container>
@@ -79,7 +84,8 @@ let tableColumns = [
         config: {
             isLoading: true,
             page: 1,
-            pagesTotal: 50,
+            perPage: undefined,
+            pagesTotal: undefined,
         },
       };
     },
@@ -90,10 +96,10 @@ let tableColumns = [
 
             this.$axios.$get(`games/list?steam_id=${this.steamID}&page=${page}`)
                 .then((response) => {
-                    console.log(response)
                     if(response.status) {
                         this.gamesList = response.games_list.data;
-                        this.config.pagesTotal = response.games_list.last_page;
+                        this.config.perPage = response.games_list.per_page;
+                        this.config.pagesTotal = response.games_list.total_count;
                     }
                 }
             ).finally(() => {
@@ -108,9 +114,9 @@ let tableColumns = [
         },
     },
     computed: {
-        totalPages() {
-            return this.config.pagesTotal;
-        },
+        hasData() {
+            return this.gamesList.length > 0;
+        }
     },
   }
 </script>
