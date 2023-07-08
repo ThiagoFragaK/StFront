@@ -84,8 +84,8 @@ let tableColumns = [
         config: {
             isLoading: true,
             page: 1,
-            perPage: undefined,
-            pagesTotal: undefined,
+            perPage: 1,
+            pagesTotal: 1,
         },
       };
     },

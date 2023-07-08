@@ -94,7 +94,7 @@ export default {
                 isLoading: true,
                 page: 1,
                 perPage: 1,
-                pagesTotal: 2,
+                pagesTotal: 1,
             },
         };
     },
