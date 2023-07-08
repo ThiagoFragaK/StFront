@@ -45,12 +45,18 @@
                     </template>
                 </b-table>
 
-                <b-pagination
-                    v-model="config.page"
-                    aria-controls="gamesTable"
-                    :total-rows="config.pagesTotal"
-                    @change="getGames($event)"
-                ></b-pagination>
+                <div v-if="showPaginatior">
+                    <b-pagination
+                        first-number
+                        last-number
+                        align="fill"
+                        v-model="config.page"
+                        aria-controls="gamesTable"
+                        :total-rows="config.pagesTotal"
+                        :per-page="config.perPage"
+                        @change="getGames($event)"
+                    ></b-pagination>
+                </div>
             </div>
         </b-row>
     </b-container>
@@ -76,9 +82,10 @@ let tableColumns = [
         tableColumns,
         gamesList: [],
         config: {
-          isLoading: true,
-          page: 1,
-          pagesTotal: 5,
+            isLoading: true,
+            page: 1,
+            perPage: 1,
+            pagesTotal: 1,
         },
       };
     },
@@ -89,9 +96,10 @@ let tableColumns = [
 
             this.$axios.$get(`games/list?steam_id=${this.steamID}&page=${page}`)
                 .then((response) => {
-                    if(response.status){
-                        this.gamesList = response.games_list;
-                        this.config.pagesTotal = response.last_page;
+                    if(response.status) {
+                        this.gamesList = response.games_list.data;
+                        this.config.perPage = response.games_list.per_page;
+                        this.config.pagesTotal = response.games_list.total_count;
                     }
                 }
             ).finally(() => {
@@ -104,6 +112,11 @@ let tableColumns = [
         isDisabled(item){
             return !item.has_achievements;
         },
+    },
+    computed: {
+        showPaginatior() {
+            return this.config.pagesTotal > 1;
+        }
     },
   }
 </script>
