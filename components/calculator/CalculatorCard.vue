@@ -1,17 +1,31 @@
 <template>
     <b-container>
         <b-row
-            align-v="center"
-            class="justify-content-md-center mt-3"
+            align-v="top"
+            class="justify-content-md-center"
         >
-            <h1>CALCULATOR CARD</h1>
+            <b-col cols="5" class="mt-3">
+                <achievements-table 
+                />
+            </b-col>
+            <b-col cols="7">
+                <calculator-panel-card 
+                />
+            </b-col>
         </b-row>
     </b-container>
 </template>
 
 <script>
+import CalculatorPanelCard from './CalculatorPanelCard.vue';
+import AchievementsTable from './AchievementsTable.vue';
+
 export default {
     props: {
+    },
+    components: {
+        CalculatorPanelCard,
+        AchievementsTable
     },
     data() {
         return {
