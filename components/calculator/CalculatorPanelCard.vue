@@ -8,10 +8,10 @@
                 <div>
                     <b-input-group class="mb-1" size="sm">
                         <template #prepend>
-                            <b-input-group-text >Age of Mythology</b-input-group-text>
+                            <b-input-group-text >Age of Empires II DE</b-input-group-text>
                         </template>
-                        <b-form-input disabled placeholder="100"></b-form-input>
-                        <b-form-input placeholder="70"></b-form-input>
+                        <b-form-input disabled placeholder="49"></b-form-input>
+                        <b-form-input placeholder="139"></b-form-input>
                     </b-input-group>
                     <b-input-group class="mb-1" size="sm">
                         <template #prepend>
@@ -33,10 +33,8 @@
                     <b-row align="center">
                         <b-col cols="6">
                             <h6>"0.23" per achievements earned</h6>
-                            <h6>Supassed goal of 93% average</h6>
                         </b-col>
                         <b-col cols="6">
-                            <h6>"0.23" per achievements earned</h6>
                             <h6>Supassed goal of 93% average</h6>
                         </b-col>
                     </b-row>

@@ -8,7 +8,13 @@
             :items="table.items"
         >
             <template #cell(action)="data">
-                +
+                <b-button
+                    size="sm"
+                    variant="primary" 
+                    class="material-icons"
+                >
+                    add
+                </b-button>
             </template>
         </b-table>
     </div>
@@ -28,6 +34,8 @@ export default {
     data() {
         return {
             config: {
+                page: 1,
+                isLoading: true,
             },
             table: {
                 columns: tableColumns,
@@ -41,10 +49,27 @@ export default {
         };
     },
     methods: {
+        getAchievements(page = this.config.page) {
+            this.config.isLoading = true;
+            this.config.page = page;
+            console.log([
+                this.steamID, page
+            ])
+            this.$axios.$get(`games/achievements?steam_id=${this.steamID}&page=${page}`)
+                .then((response) => {
+                    console.log(response)
+                }).finally(() => {
+                    this.config.isLoading = false;
+                });
+        },
     },
     computed: {
+        steamID() {
+            return this.$store.state.auth.steamID;
+        },
     },
     created() {
+        this.getAchievements();
     },
 };
 </script>
