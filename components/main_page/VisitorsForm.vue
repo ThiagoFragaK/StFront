@@ -13,8 +13,13 @@
                     class="form-control"
                     id="steam_id" 
                 />
+                <small 
+                    class="form-text text-muted"
+                > 
+                    We'll check if the SteamID exists and then bring your information.
+                </small>
             </div>
-            <div class="form-group mt-4">              
+            <div class="form-group mt-4">            
                 <b-button 
                     v-if="config.isLoading" 
                     variant="primary" 
@@ -30,12 +35,7 @@
                 >
                     Authenticate ID
                 </b-button>
-            </div>
-            <small 
-                class="form-text text-muted"
-            > 
-                We'll check if the SteamID exists and then bring your information.
-            </small>
+            </div>            
         </b-card-text>
     </b-card> 
 </template>
