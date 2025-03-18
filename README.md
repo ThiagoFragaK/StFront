@@ -1,69 +1,80 @@
-<h1> <img align="center" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D"> SteamFront</h1>
+# Steam API Frontend
 
-## Build Setup
+## Overview
+This repository is the frontend for the Steam API integration. It is built using **Nuxt2** and **VueBootstrap** to provide a smooth user experience while managing users and their game achievements. The application displays the latest games played along with their achievements and provides a dedicated game page showing all achievements, categorized as achieved or not achieved.
 
-```bash
-# install dependencies
-$ npm install
+## Features
+- User authentication and profile management.
+- Display of the latest games played with their corresponding achievements.
+- Individual game pages listing all achievements, distinguishing between achieved and not achieved.
+- Responsive UI built with **VueBootstrap**.
+- API integration with Steam for fetching user and game data.
+- **Axios** for handling API requests.
+- **Notifications** to inform users about updates and achievements.
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+## Technologies Used
+- **Nuxt.js (Nuxt2)** – Vue.js framework for server-side rendering and routing.
+- **VueBootstrap** – Bootstrap components for Vue.js to enhance UI.
+- **Axios** – For API requests to fetch Steam user and game data.
+- **Vuex** – State management for user data and game progress.
+- **Notifications** – Integrated to enhance user experience with alerts and messages.
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+## Project Setup
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/ThiagoFragaK/StFront
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd StFront
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-# generate static project
-$ npm run generate
+### Running the Project
+For development:
+```sh
+npm run dev
+```
+For production build:
+```sh
+npm run build
+npm run start
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## Folder Structure
+```
+steam-api-frontend/
+│── components/         # Reusable Vue components
+│── layouts/            # Nuxt layouts
+│── pages/              # Nuxt pages (User Profile, Game Page, etc.)
+│── store/              # Vuex store for state management
+│── static/             # Static assets
+│── plugins/            # Plugins (e.g., Axios configuration, Notifications)
+│── nuxt.config.js      # Nuxt configuration file
+│── package.json        # Project dependencies and scripts
+```
 
-## Special Directories
+## API Integration
+The application integrates with the **Steam API** to fetch user and game data. Key API endpoints used:
+- **Get Owned Games**: Fetches the list of games owned by a user.
+- **Get Recently Played Games**: Retrieves the user's most recently played games.
+- **Get Player Achievements**: Retrieves achievements for a specific game.
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+## Contributions
+Feel free to contribute by submitting issues or pull requests. Follow the standard Git workflow:
+1. Fork the repository
+2. Create a new branch
+3. Make changes and commit
+4. Push to your fork
+5. Submit a pull request
 
-### `assets`
+## License
+This project is licensed under [MIT License](LICENSE).
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+---
+For any questions or support, please open an issue or contact the repository maintainer.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
