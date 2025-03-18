@@ -1,5 +1,7 @@
 # Steam API Frontend
 
+https://tkalkulator.vercel.app/
+
 ## Overview
 This repository is the frontend for the Steam API integration. It is built using **Nuxt2** and **VueBootstrap** to provide a smooth user experience while managing users and their game achievements. The application displays the latest games played along with their achievements and provides a dedicated game page showing all achievements, categorized as achieved or not achieved.
 
